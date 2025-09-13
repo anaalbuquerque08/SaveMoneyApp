@@ -1,46 +1,65 @@
-#   Projeto de Minigames e Quizzes Educacionais
+# 💸 SaveMoneyApp – App de Metas Financeiras
 
+Um aplicativo simples, motivador e divertido para ajudar você a criar e acompanhar metas financeiras.  
+Com uma interface moderna, animações interativas e foco em usabilidade, o SaveMoneyApp transforma o ato de economizar em uma experiência engajante.  
 
-Bem-vindo ao projeto de Minigames e Quizzes Educacionais, um site interativo voltado para crianças, com o objetivo de promover o aprendizado de diversas matérias, como matemática, história e outras áreas, de forma divertida e envolvente. O design do projeto será inspirado na estética dos anos 90 e 2000, utilizando pixel art e cores marcantes para criar uma identidade visual única.
+---
 
-## Funcionalidades
+## 🚀 Contexto e Motivação
+A ideia surgiu da minha necessidade pessoal: queria um aplicativo que me ajudasse a juntar dinheiro de forma flexível, com metas personalizáveis e uma estética divertida.  
 
-- **Catálogo de Quizzes**:  Quizzes organizados por matéria e nível de dificuldade, permitindo fácil navegação e seleção.
-- **Sistema de Pontuação**:  Exibição da pontuação durante a sessão, de acordo com o desempenho em cada atividade.
-- **Modo de Aprendizado**: Feedback imediato após cada pergunta, explicando as respostas corretas e auxiliando na compreensão dos conceitos.
-- **MiniGames**: Encontre livros facilmente utilizando a barra de busca.
-- **Identidade Visual Retrô**: Uso de pixel art e elementos gráficos que remetem aos anos 90/2000.
+Limitações encontradas em apps existentes:
+- Desafios de 52 semanas eram rígidos e engessados.  
+- Interfaces pouco atrativas e sem motivação visual.  
+- Falta de opções para personalizar metas e tipos de desafios.  
 
+**Solução proposta:**  
+Criar um app *do zero*, independente de backend, combinando design motivador, flexibilidade de metas e interações animadas.
 
-## Tecnologias Utilizadas
+---
 
-- **React**: Desenvolvimento do front-end.
-- **CSS e JavaScript:**: Estilização e implementação de animações e interatividade.
-- **Figma, Krita e Aseprite**: Criação do design, identidade visual, layout e sprites em pixel art.
-- **JSON / Objetos JavaScript**: Estrutura para armazenamento de perguntas e respostas.
+## 🎨 Planejamento e Design
+- **Prototipagem no Figma**: layouts completos, paleta de cores, tipografia e elementos interativos.  
+- **Identidade visual**: interface divertida, com foco em engajamento.   
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+- **React.js + Vite** → desenvolvimento front-end.  
+- **Framer Motion** → animações reutilizáveis (fade, slide, show-up).  
+- **CSS modularizado** → estilos organizados por componentes e páginas.  
+- **localStorage** → armazenamento dos dados do usuário (sem backend).  
+- **Figma** → prototipagem.  
+
+--- 
+
+## 📱 Desenvolvimento
+- **Mobile-first**: interface criada primeiro para celular, adaptável para telas maiores.  
+- **Iterativo**: começou com elementos estáticos → lógica de estados → animações → simulação de funcionamento.   
+
+---
  
-## Teste e Feedback 
+ 
+---
 
-Avaliação do site com crianças para ajustes de usabilidade e conteúdo.
+## ✨ Diferenciais
+- Totalmente independente de backend.  
+- Estrutura modular e componentes reutilizáveis.    
+- Design planejado antes da implementação → código limpo e consistente.  
 
-## Lançamento 
+---
 
-A Publicação da versão inicial e promoção em escolas como ferramenta de aprendizado. 
+## 📜 Licença
+Este projeto está licenciado sob a **MIT License**.
 
+---
 
-## Contribuição
-
-Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
-
-## Contato
-
-Para mais informações ou perguntas sobre o projeto, você pode me contatar com a equipe de desenvolvimento [anacarolinaverde2003@gmail.com](mailto:anacarolinaverde2003@gmail.com) e [thiago.sgomes@al.infnet.edu.br](thiago.sgomes@al.infnet.edu.br)
-
-
+## 👩‍💻 Contato
+Desenvolvido por **Ana Albuquerque**.  
+📧 E-mail: **anacarolinaverde2003@gmail.com**  
+🌐 [LinkedIn](https://www.linkedin.com/in/ana-carolina-albuquerque-ba2810264/)  
+🐙 [GitHub](https://github.com/anaalbuquerque08)  
+ 
   
 
  
