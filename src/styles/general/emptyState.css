@@ -1,0 +1,28 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  width: 300px; 
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;  
+  align-self: center; 
+  gap: var(--space-md); 
+  
+}
+
+.empty-state__text {
+  width: 80%;
+  font-size: var(--label);
+  text-align: center;
+  font-weight: var(--bold);
+}
+
+.empty-state__button {
+  margin-top: 0;
+  font-size: var(--label);
+  background-color: var(--purple-100);
+  font-weight: var(--bold);
+  padding: var(--space-sm);
+  border: var(--border);
+  border-radius: var(  --radius-lg);
+}

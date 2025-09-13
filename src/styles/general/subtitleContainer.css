@@ -1,0 +1,23 @@
+ .subtitle-container {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .subtitle {
+   font-size: var(--pf);
+   font-weight: var(--semi-bold);
+ }
+
+ .setting-bttn {
+   font-size: var(--h5);
+   padding: 0 var(--space-sm) 0 var(--space-sm);
+   border: var(--border);
+   background-color: var(--yellow-100);
+   border-radius: var(--radius-sm);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+ }

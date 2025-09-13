@@ -1,0 +1,57 @@
+.appbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; 
+  border: none;
+  background-color: var(--grey-100); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: var(--space-lg);
+}
+
+    
+.appbarContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction:row ;
+ background-color: var(--green-100);
+ height: 56px;
+ border: var(--border);
+ border-radius: var(--radius-md);
+ width: 100%;
+ padding: 20px;
+ 
+}
+.appbar-btn {
+  background: none;
+  border: none;
+  font-size: 14px; 
+  cursor: pointer;
+  color: var(--grey-100); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: var(--radius-sm);
+}
+
+.appbar-btn:hover {
+  padding: 10px;
+  background-color: rgba(255,255,255,0.2);
+}
+.appbar-btn.active {
+  display: flex;
+  padding: var(--space-sm);
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  justify-content: center;
+  align-items: center;
+  background-color: var(--yellow-200);
+  color: var(--black); 
+  font-weight: 600;
+} 
