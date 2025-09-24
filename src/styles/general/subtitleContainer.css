@@ -21,3 +21,12 @@
    align-items: center;
    cursor: pointer;
  }
+
+ 
+ .setting-bttn:hover { 
+   background-color: var(--yellow-150);  
+   padding: 0 var(--space-m) 0 var(--space-m);
+   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+ }
+
+ 

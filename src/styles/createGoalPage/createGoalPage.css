@@ -1,0 +1,139 @@
+.goal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.goal-form input,
+.goal-form select,
+.goal-form button {
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    border: var(--border);
+    font-size: var(--label);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.goal-form button:hover {
+    background-color: var(--green-200);
+}
+
+/* Seletor de ícones tipo dropdown */
+.icon-selector-container {
+    position: relative;
+    width: 100%;
+}
+
+.selected-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    background-color: var(--white);
+}
+
+.selected-icon-box img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.icon-options-dropdown {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    border: var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--white);
+}
+
+.icon-options-dropdown button {
+    border: 2px solid transparent;
+    background: none;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon-options-dropdown button.selected {
+    border-color: var(--green-100);
+}
+
+.icon-options-dropdown img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Mostra o dropdown quando ativo */
+.icon-options-dropdown.active {
+    display: flex;
+}
+
+
+ .goal-form input,
+.goal-form select {
+  font-size: 16px;  
+}
+ 
+
+.goal-form select {
+  -webkit-appearance: none; /* remove estilo nativo no iOS */
+  -moz-appearance: none; /* remove estilo nativo no Firefox */
+  appearance: none;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white url('data:image/svg+xml,...') no-repeat right center; /* seta custom */
+  background-size: 16px;
+}
+/* Cores diferentes para o botão de acordo com o tipo */
+.goal-btn {
+  padding: 10px 15px;
+  border-radius: var(--radius-md);
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+
+
+.goal-form button {
+
+    color: var(--black);
+    font-weight: var(--bold);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Verde para bloco */
+.goal-btn.bloco {
+  background-color: var(--green-100); 
+}
+
+/* Rosa para sequencial */
+.goal-btn.sequencial {
+  background-color: var(--pink-100); 
+}
+
+/* Azul para fixo */
+.goal-btn.fixo {
+   background-color: var(--purple-100); 
+}
+
+.goal-btn:hover {
+  filter: brightness(0.9);
+}

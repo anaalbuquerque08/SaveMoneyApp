@@ -18,6 +18,10 @@
 }
 
 .empty-state__button {
+  gap: var(--space-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 0;
   font-size: var(--label);
   background-color: var(--purple-100);
@@ -26,3 +30,10 @@
   border: var(--border);
   border-radius: var(  --radius-lg);
 }
+
+
+.empty-state__button:hover {  
+   background-color: var(--purple-200);   
+   padding: var(--space-sm) var(--space-m) var(--space-sm) var(--space-m);
+   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+ }

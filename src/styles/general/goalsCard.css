@@ -1,0 +1,126 @@
+.goalCard-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  margin-top: var(--space-sm);
+}
+
+.goalCard-shadow {
+  width: 100%;
+  display: flex;
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  border: var(--border);
+  padding: 0 5px 5px 0;
+}
+
+.goalCard-item {
+  width: 100%;
+  display: flex;
+  border-bottom: var(--border);
+  border-right: var(--border);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-m);
+  gap: var(--space-m);
+  align-items: center;
+}
+
+.goalCard-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.goalCard-icon {
+  width: 75px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goalCard-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.goalCard-divider {
+  width: 2px;
+  border-left: 2px dashed var(--black);
+  margin: 0;
+  height: 120%;
+}
+
+.goalCard-right {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goalCard-contentStart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.goalCard-title {
+  font-weight: var(--bold);
+  font-size: var(--label);
+  margin: 0;
+}
+
+.goalCard-progress {
+  font-size: var(--label);
+  color: var(--grey-300);
+  margin: 0;
+}
+
+.goalCard-contentEnd {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.goalCard-typeBox {
+  font-size: var(--label-s);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  border: var(--border);
+  font-weight: var(--bold); 
+  position: absolute;
+  bottom: 40px;
+  right: 15px;
+}
+
+/* Verde para bloco */
+.goalCard-typeBox.bloco {
+  background-color: var(--green-100);
+}
+
+/* Rosa para sequencial */
+.goalCard-typeBox.sequencial {
+  background-color: var(--pink-100);
+}
+
+/* Azul para fixo */
+.goalCard-typeBox.fixo {
+  background-color: var(--purple-100);
+}
+
+
+.goalCard-typeText {
+  font-size: 10px;
+}
+
+.goalCard-boxEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-m);
+}

@@ -1,0 +1,42 @@
+.sequential-grid-container {
+  padding: 1rem;
+  background-color: var(--white);
+  border-radius: 12px;
+  border: var(--border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sequential-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 10px;
+}
+
+.deposit-number-box{
+   border: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background-color: var(--pink-100);
+  color: var(--black); 
+  border-radius: 8px;
+  font-size: var(--h6);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.deposit-number-box.completed {
+  background-color: var(--pink-200);
+  color: var(--white); 
+}
+
+.deposit-number-box:hover {
+  transform: scale(1.05);
+}
+
+.deposit-number-box:active {
+  transform: scale(0.95);
+}

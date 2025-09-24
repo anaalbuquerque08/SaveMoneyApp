@@ -1,16 +1,12 @@
- 
-import React from "react";
-import { motion } from "framer-motion";
+import React from "react"; 
+import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 
 export default function InformationPage() {
   return (
-<motion.div
-  className="page-wrapper"
-  animate={{ height: "90vh" }}
-  transition={{ duration: 0.5, ease: "easeInOut" }}
->
-  <p>This is the InformationPage page.</p>
-</motion.div>
+  <GeneralFadeIn>  
+  <p>This is the Information page.</p> 
+  </GeneralFadeIn>
+
 
 
   );

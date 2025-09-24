@@ -1,0 +1,31 @@
+/* src/styles/home/circularProgress.css */
+
+.circular-progress-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  width: 77px;
+  height: 50px;
+}
+
+.progress-circle-bg {
+  fill: none;
+  stroke: var(--grey-150); 
+}
+
+.progress-circle {
+  fill: none;
+  stroke: var(--purple-100); 
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease-in-out; 
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+}
+
+.progress-text {
+  font-family: var(--font-primary); 
+  font-size: var(--h6);
+  font-weight: bold;
+  fill: var(--black);
+}

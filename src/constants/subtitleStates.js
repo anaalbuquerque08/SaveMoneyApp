@@ -1,9 +1,12 @@
 const subtitleStates = {
   goals: {
-    text: "Minhas conquistas"
+    text: "Minhas metas"
   },
   deposit: {
     text: "Meus depósitos"
+  },
+  aquisitions: {
+    text: "Minhas conquistas"
   },
 };
 

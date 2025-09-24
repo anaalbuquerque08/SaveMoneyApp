@@ -4,8 +4,10 @@
 
 
   --border: 2px solid var(--black);
+  --border-dashed: 2px dashed var(--black);
 
   /* FONT SIZE */
+  --label-s: 10px;
   --label: 12px;
   --pf: 14px;
   --h6: 16px;
@@ -48,12 +50,17 @@
   --white: #ffffff;
   --black: #000000;
   --grey-100: #F8F8F8;
+  --grey-150: #e6e6e6;
   --grey-200: #D2D2D2;
   --grey-300: #A2A2A2;
 
   /* COLORS - PURPLE */
   --purple-100: #B9D3F8;
-  --purple-200: #8CA1D7;
+  --purple-200: #8CA1D7; 
+
+ /* COLORS - PINK */
+  --pink-100: #F0DBE7;
+  --pink-200: #B88EA6;
 
   /* COLORS - GREEN */
   --green-100: #90A878;
@@ -61,11 +68,14 @@
 
   /* COLORS - YELLOW */
   --yellow-100: #FFDC9A;
+  --yellow-150: #F6C25F;
   --yellow-200: #E0960D;
+  --yellow-250: #c07d00;
 
   /* BACKGROUND IMAGES / ASSETS */
-  --background-image: url("../../assets/backgrounds/background-image.png");
+  --background-image: url("../../assets/backgrounds/background-image2.png");
   --money: url("../../assets/icons/money.png");
   --percentage: url("../../assets/icons/percentage.png");
+  --car: url("../../assets/icons/carro-icon.png");
 
 }

@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";  
 import "../../styles/general/depositeBox.css"; 
 
 export default function DepositBox({ children }) {

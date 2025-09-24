@@ -12,4 +12,4 @@ export default function ShowUp({ children }) {
       {children}
     </motion.div>
   );
-}
+} 

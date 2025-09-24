@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; 
-import "../../styles/home/header.css";
+import "../../styles/general/header.css";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoChevronBack } from "react-icons/io5"; 
 

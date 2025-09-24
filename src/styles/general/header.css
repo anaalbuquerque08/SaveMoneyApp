@@ -12,7 +12,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between; 
-  padding: 12px;
+  padding: 0;
+  color: var(--black);
 }
 
 .bttnheader{
@@ -46,6 +47,11 @@
 
 
 
+
+
+
+
+
 .bttnShadow {
 background-color: var(--yellow-200); 
 padding: var(--space-s);
@@ -53,11 +59,11 @@ border: var(--border);
 border-radius: var(--radius-md);
 position: absolute;
 bottom: -50px;
+
 }
 
-
-
 .bttnHeader{
+height: 32px;
 width: 130px;
 background-color: var(--white);
 padding: var(--space-sm);
@@ -72,6 +78,21 @@ gap: var(--space-sm);
  
 }
 
-p{
-  margin: 0;
+ 
+
+.bttnShadow:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  
+}
+ 
+.bttnHeader:hover {
+  transform: scale(0.98);
+}
+
+ .bttnShadow:active {
+  background-color: var(--yellow-250); 
+}
+
+.bttnHeader:active {
+  background-color: var(--grey-100);
 }
