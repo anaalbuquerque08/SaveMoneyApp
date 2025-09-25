@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 
 //* Components
 import Header from "../Components/General/Header";
@@ -13,9 +14,9 @@ import "../styles/goalDetailsPage/goalDetailsPage.css";
 export default function GoalDetailsPage() {
     const location = useLocation();
     const navigate = useNavigate();
- 
+
     const {
-        id, 
+        id,
         title,
         icon,
         goalType,
@@ -23,66 +24,96 @@ export default function GoalDetailsPage() {
         targetValue,
         description,
         challengeInfo,
-        completedDeposits: initialCompletedDeposits,  
+        completedDeposits: initialCompletedDeposits,
     } = location.state || {};
-     
+
     const [completedDeposits, setCompletedDeposits] = useState(initialCompletedDeposits || []);
     const [currentGoalValue, setCurrentGoalValue] = useState(currentValue || 0);
-     
-    const handleDepositClick = (depositNumber) => { 
-        const newCompletedDeposits = completedDeposits.includes(depositNumber)
-            ? completedDeposits.filter(num => num !== depositNumber)  
-            : [...completedDeposits, depositNumber];  
-             
+
+    const handleDepositClick = (depositNumber) => {
+        const newDeposit = {
+            value: depositNumber,
+            timestamp: new Date().getTime(),
+        };
+
+        const existingDeposit = completedDeposits.find(dep => dep.value === depositNumber);
+
+        const newCompletedDeposits = existingDeposit
+            ? completedDeposits.filter(dep => dep.value !== depositNumber)
+            : [...completedDeposits, newDeposit];
+
         setCompletedDeposits(newCompletedDeposits);
-         
-        const newCurrentValue = newCompletedDeposits.reduce((sum, num) => sum + num, 0);
+
+        const newCurrentValue = newCompletedDeposits.reduce((sum, dep) => sum + dep.value, 0);
         setCurrentGoalValue(newCurrentValue);
-         
+
         const savedGoals = JSON.parse(localStorage.getItem("goals") || "[]");
-         
+
         const updatedGoals = savedGoals.map(goal => {
             if (goal.id === id) {
                 return {
                     ...goal,
                     currentValue: newCurrentValue,
-                    completedDeposits: newCompletedDeposits
+                    completedDeposits: newCompletedDeposits,
                 };
             }
             return goal;
         });
-         
+
         localStorage.setItem("goals", JSON.stringify(updatedGoals));
     };
-    
+
+    const handleDeleteGoal = () => {
+        const savedGoals = JSON.parse(localStorage.getItem("goals") || "[]");
+        const updatedGoals = savedGoals.filter(goal => goal.id !== id);
+        localStorage.setItem("goals", JSON.stringify(updatedGoals));
+        navigate("/goals");
+    };
+
     const totalDeposits = challengeInfo?.totalDeposits || 0;
 
     return (
         <div className="page">
             <Header type="home" showButton={true} showContent={false} />
             <GeneralFadeIn>
-                <GoalProgressCard
-                    title={title}
-                    subtitle={description}
-                    icon={icon}
-                    current={currentGoalValue}
-                    target={targetValue}
-                />
+                <div className="goal-details-header-content">
+                    <GoalProgressCard
+                        title={title}
+                        subtitle={description}
+                        icon={icon}
+                        current={currentGoalValue}
+                        target={targetValue}
+                    />
+
+                </div>
+                
 
                 {goalType === "sequencial" && (
                     <>
                         <SubtitleContainer
-                            text={`Desafio Sequencial (${completedDeposits.length}/${totalDeposits} depósitos)`}
+                            text={
+                                <>
+                                    Desafio Sequencial {" "}
+                                    <span className="subtitle-count">
+                                        ({completedDeposits.length}/{totalDeposits} depósitos)
+                                    </span>
+                                </>
+                            }
                             showButton={true}
                         />
-
                         <SequentialChallengeGrid
                             totalDeposits={totalDeposits}
-                            completedDeposits={completedDeposits}
+                            completedDeposits={completedDeposits.map(dep => dep.value)}
                             onDepositClick={handleDepositClick}
                         />
+ 
                     </>
+
                 )}
+                
+                        <div className="delete-goal-btn" onClick={handleDeleteGoal}>
+                            <FaTrash className="delete-goal-btn-icon" size={24} />
+                        </div>
             </GeneralFadeIn>
         </div>
     );

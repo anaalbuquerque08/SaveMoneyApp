@@ -3,6 +3,7 @@
 
 const emptyStates = {
   goals: {
+     
     text: "Você ainda não possui nenhuma meta :(",
     buttonLabel: "Comece a juntar <3",
     route: "/create-goal"

@@ -4,7 +4,7 @@ export default function HomeFadeIn({ children }) {
   return (
     <motion.div
       className="page-wrapper"
-      style={{ height: "78vh", transformOrigin: "bottom" }}  
+      style={{ height: "90vh", transformOrigin: "bottom" }}  
       initial={{ opacity: 0, y: 50, scaleY: 0 }}
       animate={{ opacity: 1, y: 0, scaleY: 1 }}
       transition={{

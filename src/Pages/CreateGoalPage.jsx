@@ -1,28 +1,15 @@
-// src/pages/CreateGoalsPage.jsx
-
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoIosArrowDown } from "react-icons/io";
-
+import { useNavigate } from "react-router-dom"; 
+import { FaChevronDown } from "react-icons/fa";
 import { generateSequentialChallenge, calculateSequentialSum } from "../utils/goalCalculations";
 
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import SubtitleContainer from "../Components/States/SubtitleState";
 import Header from "../Components/General/Header";
 import subtitleStates from "../Constants/subtitleStates";
-
+import availableIcons from "../Constants/goalIcons";
 import "../styles/createGoalPage/createGoalPage.css";
 
-import car from "../assets/icons/car.png";
-import cart from "../assets/icons/cart.png";
-import clothes from "../assets/icons/clothes.png";
-import food from "../assets/icons/food.png";
-import house from "../assets/icons/house.png";
-import money from "../assets/icons/moneybag.png";
-import selfCare from "../assets/icons/self-care.png";
-
-const availableIcons = [car, cart, clothes, food, house, money, selfCare];
- 
 const MAX_DEPOSITS_SEQUENTIAL = 447;
 
 export default function CreateGoalsPage() {
@@ -100,15 +87,16 @@ export default function CreateGoalsPage() {
         <SubtitleContainer text={subtitleStates.goals.text} showButton={true} />
 
         <div className="goal-form">
-          <section>
+          <section className="icon-and-input-row">
             <div className="icon-selector-container">
               <div
                 className="selected-icon-box"
                 onClick={() => setDropdown(!dropdown)}
               >
-                <img src={icon} alt="Selecionado" />
-                <IoIosArrowDown size={20} />
+                <img src={icon} alt="Selecionado" /> 
+                <FaChevronDown size={16}/>
               </div>
+
 
               <div className={`icon-options-dropdown ${dropdown ? "active" : ""}`}>
                 {availableIcons.map((img) => (
@@ -126,22 +114,22 @@ export default function CreateGoalsPage() {
                 ))}
               </div>
             </div>
-
             <input
               type="text"
               placeholder="Título da meta"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-            />
-
-            <input
-              type="text"
-              placeholder="Descrição (máx. 70 caracteres)"
-              value={description}
-              onChange={(e) => setDescription(e.target.value.substring(0, 70))}
-              maxLength={120}
+              maxLength={15}
             />
           </section>
+
+          <input
+            type="text"
+            placeholder="Descrição (máx. 70 caracteres)"
+            value={description}
+            onChange={(e) => setDescription(e.target.value.substring(0, 70))}
+            maxLength={120}
+          />
 
           <select value={goalType} onChange={(e) => setGoalType(e.target.value)}>
             <option value="bloco">Bloco</option>
@@ -161,7 +149,7 @@ export default function CreateGoalsPage() {
             placeholder="Valor alvo"
             value={targetValue}
             onChange={handleTargetValueChange}
-            max={100000}  
+            max={100000}
           />
 
           {challengeInfo && (

@@ -31,16 +31,17 @@
 
 .goal-progress-card-header {
   display: flex; 
-  gap: var(--space-sm);  
+  gap: var(--space-md);  
   align-items: center;
 }
 
 .goal-progress-card-icon {
-  width: 55px;
-  height:55px;
+  width: 58px;
+  height:58px;
   object-fit: contain;
   padding: var(--space-xs);
-  margin-right: var(--space-xs);
+  margin-left: var(--space-m);
+  margin-right: var(--space-sx);
   border: var(--border);
   border-radius: var(--radius-md);
 }
@@ -52,32 +53,72 @@
 
 .goal-progress-card-title {
   font-weight: var(--bold);
-  font-size: var(--h6);
+  font-size: var(--h5);
   margin: 0;
 }
 
 .goal-progress-card-subtitle {
   font-size: var(--label);
-  color: var(--grey-300);
-  margin: 0;
+  color: var(--grey-300); 
 }
 
-.goal-progress-card-progress-bar-container {
-  width: 100%;
-  height: 10px;
+.goal-progress-card-progress-bar-container { 
+  align-self: center;
+  position: relative;
+  width: 94%;  
+  height: 20px;
   background-color: var(--grey-100);
+  border: var(--border);
   border-radius: var(--radius-sm);
-  overflow: hidden; 
+  overflow: hidden;
 }
-
-.goal-progress-card-progress-bar {
-  height: 100%;
-  background-color: var(--green-300); 
-  transition: width 0.3s ease-in-out;
-}
-
+ 
 .goal-progress-card-progress-value {
-  font-size: var(--label-s);
+  font-size: var(--label); 
   color: var(--grey-300);
+  padding-left: var(--space-m);
   margin: 0;
+} 
+ 
+.goal-progress-card-progress-bar {
+   border-right: var(--border);
+  height: 100%;
+  background-color: var(--pink-100);
+  transition: width 0.3s ease-in-out;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  position: relative; 
+}
+ 
+.goal-progress-card-percentage { 
+  color:var(--black);
+  font-weight: var(--bold);
+  font-size: var(--label-s);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  
+}
+
+.delete-goal-btn{
+  width: 100%;
+  background-color: var(--white);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: center;
+  padding: var(--space-m);
+  margin-bottom: 120px;
+}
+
+ .delete-goal-btn-icon{
+  color: var(--black);
+   
+ }
+
+ .subtitle-count {
+  font-weight: bold;  
+  color: var(--pink-200); 
+  font-size: var(--label);  
 }

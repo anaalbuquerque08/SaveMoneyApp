@@ -1,104 +1,127 @@
 .goal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
+  width: 100%; 
+  display: flex;
+  flex-direction: column;
+  gap: 15px;  
+  margin: 0 auto;
 }
 
 .goal-form input,
 .goal-form select,
 .goal-form button {
-    padding: 10px 12px;
-    border-radius: var(--radius-md);
-    border: var(--border);
-    font-size: var(--label);
-    width: 100%;
-    box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: var(--border);
+  font-size: var(--label);
+  width: 100%;
+  box-sizing: border-box;
 }
-
 
 .goal-form button:hover {
-    background-color: var(--green-200);
+  background-color: var(--grey-100); 
 }
 
-/* Seletor de ícones tipo dropdown */
+.icon-and-input-row {
+  display: flex;
+  align-items: center; 
+  gap: var(--space-md); 
+} 
 .icon-selector-container {
-    position: relative;
-    width: 100%;
+  width: 30%; 
+  height: 60px; 
+  position: relative; 
 }
 
 .selected-icon-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: var(--border);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  padding: 6px;
+  border: var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  background-color: var(--white);
+  width: 100%;
+  height: 100%;
+  gap: 6px; 
 }
 
 .selected-icon-box img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
-.icon-options-dropdown {
-    display: none;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 5px;
-    padding: 10px;
-    border: var(--border);
-    border-radius: var(--radius-md);
-    background-color: var(--white);
+.selected-icon-box svg {
+  font-size: 18px;
+  color: var(--black);
+}
+
+.icon-options-dropdown { 
+  transition: 0.2s;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);  
+  grid-auto-rows: 64px; 
+  gap: 10px;
+  margin-top: 5px;
+  padding: 12px;
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--white);
+  position: absolute;
+  z-index: 10;
+  top: 116%;
+  left: 0;
+  width: 440%;  
+  max-height: 400px;  
+  overflow-y: auto;   
 }
 
 .icon-options-dropdown button {
-    border: 2px solid transparent;
-    background: none;
-    padding: 5px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
+  border: 2px solid transparent;
+  background-color: var(--white); 
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon-options-dropdown button.selected {
-    border-color: var(--green-100);
+  background-color: var(--yellow-100); 
+  border: var(--border); 
 }
 
 .icon-options-dropdown img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+  height: 45px; 
+  height: 45px; 
+  object-fit: contain;
 }
 
-/* Mostra o dropdown quando ativo */
 .icon-options-dropdown.active {
-    display: flex;
+  display: grid;
 }
 
 
- .goal-form input,
-.goal-form select {
-  font-size: 16px;  
+.goal-form input,
+.goal-form select { 
+  height: 60px; 
+  font-size: 16px;
 }
- 
 
 .goal-form select {
-  -webkit-appearance: none; /* remove estilo nativo no iOS */
-  -moz-appearance: none; /* remove estilo nativo no Firefox */
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background: white url('data:image/svg+xml,...') no-repeat right center; /* seta custom */
+  background: white url('data:image/svg+xml,...') no-repeat right center;
   background-size: 16px;
 }
-/* Cores diferentes para o botão de acordo com o tipo */
+
 .goal-btn {
   padding: 10px 15px;
   border-radius: var(--radius-md);
@@ -109,29 +132,26 @@
   transition: background 0.2s ease-in-out;
 }
 
-
-
 .goal-form button {
-
-    color: var(--black);
-    font-weight: var(--bold);
-    cursor: pointer;
-    transition: 0.2s;
+  color: var(--black);
+  font-weight: var(--bold);
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 /* Verde para bloco */
 .goal-btn.bloco {
-  background-color: var(--green-100); 
+  background-color: var(--green-100);
 }
 
 /* Rosa para sequencial */
 .goal-btn.sequencial {
-  background-color: var(--pink-100); 
+  background: #e84393;
 }
 
 /* Azul para fixo */
 .goal-btn.fixo {
-   background-color: var(--purple-100); 
+  background: #3498db;
 }
 
 .goal-btn:hover {

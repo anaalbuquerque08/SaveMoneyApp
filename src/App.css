@@ -36,16 +36,22 @@ button, a {
 }
 
 
- body {
-   font-family: var(--font-primary, 'Poppins'), sans-serif;
-   font-weight: var(--regular);
-   width: 100%;
-   height: 100vh;
-   background: var(--background-image) no-repeat center center / cover;
-   display: flex;
-   flex-direction: column;
-   justify-content: end;
- }
+body {
+  font-family: var(--font-primary, 'Poppins'), sans-serif;
+  font-weight: var(--regular);
+  width: 100%;
+  height: 100vh;
+  background-color: var(--grey-100);  
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
 
  .home-page {
   width: 100%;
@@ -55,20 +61,68 @@ button, a {
   justify-content: end;  
 }
  
- .page-wrapper {
-   margin-bottom: 104px;
-   min-height: 62vh;
-   max-height: 80vh;
-   width: 100%;
-   padding: var(--space-lg);
-   padding-top: 38px;
-   display: flex;
-   flex-direction: column;
-   background-color: var(--grey-100);
-   border-top-left-radius: var(--radius-sm);
-   border-top-right-radius: var(--radius-sm);
-   border-top: var(--border);
-   gap: var(--space-md);
-   overflow-y: auto;
+:root {
+  --appbar-height: px; /* mesma altura da tua .appbarContainer */
+}
+
+.page-wrapper {
+  min-height: 80vh;
+  max-height: 90vh;
+  width: 100%;
+  padding: var(--space-lg);
+  padding-top: 38px;
+  padding-bottom: calc(var(--appbar-height) + 20px);  
+  display: flex;
+  flex-direction: column;
+  background-color: var(--grey-100);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  border-top: var(--border);
+  gap: var(--space-md);
+  overflow-y: auto;
+
+  /* remove aquele margin-bottom: 104px */
+}
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--grey-100); /* cor de fundo do app */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.splash-logo {
+  width: 40%;
+  max-width: 200px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+ .em-obra{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  flex-direction: column;
  }
- 
+
+  .em-obra h4{
+  font-size: var(--h4);
+  margin: 0;
+ }
+  .em-obra p{
+  font-size: var(--pf);
+ }
+ .em-obra img{
+  width: 30%;
+  padding-bottom: 20px;
+ }

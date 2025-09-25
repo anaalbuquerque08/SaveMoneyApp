@@ -47,7 +47,7 @@
 
 .card-icon.money {
   width: 75px;
-  height: 47px;
+  height: 75px;
   background: var(--money) no-repeat center center / contain;
 }
 

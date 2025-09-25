@@ -22,8 +22,7 @@ export default function GoalsPage() {
         <SubtitleContainer text={subtitleStates.goals.text} showButton={true} />
         
         <GoalsList goals={goals} className="goals-list"/> 
-
-        <SubtitleContainer text={subtitleStates.deposit.text} showButton={false} />
+ 
       </GeneralFadeIn>
     </div>
   );

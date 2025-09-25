@@ -3,10 +3,12 @@
   flex-direction: column;
   width: 300px; 
   align-items: center;
+  align-content: flex-end;
   justify-content: center;
   flex-grow: 1;  
   align-self: center; 
   gap: var(--space-md); 
+  padding: 20px;
   
 }
 

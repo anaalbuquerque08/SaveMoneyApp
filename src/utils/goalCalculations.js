@@ -9,28 +9,47 @@
  * @returns {Object} Um objeto com os totais.
  */
 export const calculateGoalTotals = (goals = []) => {
-  const totalCurrent = goals.reduce((sum, goal) => sum + (Number(goal.currentValue) || 0), 0);
-  const totalTarget = goals.reduce((sum, goal) => sum + (Number(goal.targetValue) || 0), 0);
-  
-  return { totalCurrent, totalTarget };
+    let totalCurrent = 0;
+    let totalTarget = 0;
+
+    goals.forEach(goal => {
+        // ✅ AQUI ESTÁ A CORREÇÃO FINAL
+        // Se a meta tiver depósitos, soma o valor de cada um.
+        if (goal.completedDeposits && Array.isArray(goal.completedDeposits)) {
+            const goalValue = goal.completedDeposits.reduce((sum, deposit) => {
+                // Se o depósito for um objeto, some o 'value' dele.
+                if (typeof deposit === 'object' && deposit.value) {
+                    return sum + deposit.value;
+                }
+                // Se for um número (caso de depósitos antigos), some-o diretamente.
+                return sum + deposit;
+            }, 0);
+
+            totalCurrent += goalValue;
+        }
+
+        totalTarget += Number(goal.targetValue) || 0;
+    });
+
+    return { totalCurrent, totalTarget };
 };
 
 //? Esta função calcula a sequência de depósitos para o desafio sequencial.
 //? Ela descobre quantos depósitos são necessários para atingir um valor-alvo.
 export const generateSequentialChallenge = (targetValue) => {
-  let totalDeposits = 0;
-  let finalValue = 0;
-  while (finalValue < targetValue) {
-    totalDeposits++;
-    finalValue += totalDeposits;
-  }
-  
-  return { totalDeposits, finalValue };
+    let totalDeposits = 0;
+    let finalValue = 0;
+    while (finalValue < targetValue) {
+        totalDeposits++;
+        finalValue += totalDeposits;
+    }
+
+    return { totalDeposits, finalValue };
 };
 
 //? Esta nova função calcula o valor total de uma sequência, a partir do número de depósitos.
 //? Por exemplo, se você disser 5, ela soma 1+2+3+4+5 e retorna 15.
 export const calculateSequentialSum = (totalDeposits) => {
-  if (totalDeposits <= 0) return 0;
-  return (totalDeposits * (totalDeposits + 1)) / 2;
+    if (totalDeposits <= 0) return 0;
+    return (totalDeposits * (totalDeposits + 1)) / 2;
 };
