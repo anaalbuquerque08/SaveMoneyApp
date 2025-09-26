@@ -137,21 +137,23 @@
   font-weight: var(--bold);
   cursor: pointer;
   transition: 0.2s;
+   margin-bottom: 120px;
 }
 
 /* Verde para bloco */
-.goal-btn.bloco {
+.goal-btn.blocos {
   background-color: var(--green-100);
 }
 
 /* Rosa para sequencial */
 .goal-btn.sequencial {
-  background: #e84393;
+  background: var(--pink-100);
 }
 
 /* Azul para fixo */
 .goal-btn.fixo {
-  background: #3498db;
+  background: var(--purple-100);
+  
 }
 
 .goal-btn:hover {

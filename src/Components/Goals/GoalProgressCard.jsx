@@ -1,8 +1,18 @@
-import React from "react";
-import "../../styles/goalDetailsPage/goalDetailsPage.css";
-
-export default function GoalProgressCard({ title, icon, current, target, subtitle }) {
+export default function GoalProgressCard({ title, icon, current, target, subtitle, goalType }) {
   const percentage = Math.round((current / target) * 100);
+ 
+  const getProgressColor = () => {
+    switch (goalType) {
+      case "sequencial":
+        return "var(--pink-100)";
+      case "blocos":
+        return "var(--green-100)";
+      case "fixo":
+        return "var(--purple-100)";
+      default:
+        return "var(--grey-200)";
+    }
+  };
 
   return (
     <div className="goal-progress-card-container">
@@ -16,10 +26,14 @@ export default function GoalProgressCard({ title, icon, current, target, subtitl
             </div>
           </div>
           <div className="goal-progress-card-progress-bar-container">
-            <div className="goal-progress-card-progress-bar" style={{ width: `${percentage}%` }}>
-              
-            </div>
-             <span className="goal-progress-card-percentage">{percentage}%</span>
+            <div
+              className="goal-progress-card-progress-bar"
+              style={{
+                width: `${percentage}%`,
+                backgroundColor: getProgressColor(), 
+              }}
+            ></div>
+            <span className="goal-progress-card-percentage">{percentage}%</span>
           </div>
           <p className="goal-progress-card-progress-value">
             R${current} de R${target}

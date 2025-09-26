@@ -7,6 +7,7 @@ import CreateGoalPage from "./Pages/CreateGoalPage";
 import InformationPage from "./Pages/InformationPage";
 import SettingsPage from "./Pages/SettingsPage";
 import GoalDetailsPage from "./Pages/GoalDetailsPage";
+import coin from "./assets/icons/coin.png";
 
 import AppBar from "./Components/General/AppBar";
 import "./App.css";
@@ -14,8 +15,7 @@ import "./App.css";
 function App() {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Simula carregamento inicial (pode ser assets ou API)
+  useEffect(() => { 
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
@@ -23,7 +23,7 @@ function App() {
   if (loading) {
     return (
       <div className="splash-screen">
-        <img src="/logo.png" alt="Depozy Logo" className="splash-logo" />
+        <img src={coin} alt="Depozy Logo" className="splash-logo" />
         {/* Pode colocar mascote ou animação aqui */}
       </div>
     );

@@ -6,12 +6,12 @@ import { calculateGoalTotals } from "../utils/goalCalculations";
 import Header from "../Components/General/Header";
 import SubtitleContainer from "../Components/States/SubtitleState";
 import AcquisitionCard from "../Components/Home/AcquisitionCard";
-import DepositState from "../Components/States/DepositState"; // ✅ Nome do componente corrigido
+import DepositBox from "../Components/States/DepositBox";
 import EmptyState from "../Components/States/EmptyState";
 
 //* Constants
 import emptyStates from "../Constants/emptyStates";
-import subtitleStates from "../Constants/subtitleStates"; 
+import subtitleStates from "../Constants/subtitleStates";
 
 //* Animations
 import HomeFadeIn from "../Components/General/AnimatedPage/HomeFadeIn";
@@ -34,17 +34,13 @@ export default function HomePage() {
     setTotalCurrent(totalCurrent);
 
     const allDeposits = savedGoals
-      .filter((goal) => goal.goalType === "sequencial" && goal.completedDeposits)
+      .filter((goal) => goal.completedDeposits && goal.completedDeposits.length > 0)
       .flatMap((goal) =>
         goal.completedDeposits.map((deposito) => {
-          const isObject = typeof deposito === 'object' && deposito.value !== undefined;
-          const value = isObject ? deposito.value : deposito;
-          const timestamp = isObject ? deposito.timestamp : 0;
-          
           return {
             title: goal.title,
-            value: value,
-            timestamp: timestamp,
+            value: deposito.value,
+            timestamp: deposito.timestamp,
           };
         })
       );
@@ -76,8 +72,7 @@ export default function HomePage() {
             <SubtitleContainer text={subtitleStates.aquisitions.text} showButton={true} />
             <AcquisitionCard goals={goals} />
             <SubtitleContainer text={subtitleStates.deposit.text} showButton={false} />
-            <DepositState>  
-              <div className="last-deposit-item"></div>
+            <DepositBox>
               {lastDeposits.length > 0 ? (
                 lastDeposits.map((deposit, index) => (
                   <div key={index} className="last-deposit-item">
@@ -92,7 +87,7 @@ export default function HomePage() {
                   onClick={() => navigate(emptyStates.deposit.route)}
                 />
               )}
-            </DepositState>
+            </DepositBox>
           </>
         )}
       </HomeFadeIn>

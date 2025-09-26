@@ -1,4 +1,4 @@
-// depositBox.js
+ 
 const depositBox = {
   noDeposit: {
     text: "Ainda não houve depósito",

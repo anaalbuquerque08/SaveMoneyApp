@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
-import { generateSequentialChallenge, calculateSequentialSum } from "../utils/goalCalculations";
+import {
+  generateSequentialChallenge,
+  calculateSequentialSum,
+  generateBlockChallenge,
+  generateFixedChallenge,
+} from "../utils/goalCalculations";
 
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import SubtitleContainer from "../Components/States/SubtitleState";
@@ -11,12 +16,14 @@ import availableIcons from "../Constants/goalIcons";
 import "../styles/createGoalPage/createGoalPage.css";
 
 const MAX_DEPOSITS_SEQUENTIAL = 447;
+const MIN_FIXED_DEPOSIT = 1;
 
 export default function CreateGoalsPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [goalType, setGoalType] = useState("bloco");
+  const [goalType, setGoalType] = useState("blocos");
   const [targetValue, setTargetValue] = useState("");
+  const [fixedDepositValue, setFixedDepositValue] = useState("");
   const [icon, setIcon] = useState(availableIcons[0]);
   const [dropdown, setDropdown] = useState(false);
   const [challengeInfo, setChallengeInfo] = useState(null);
@@ -28,18 +35,68 @@ export default function CreateGoalsPage() {
     if (goalType === "sequencial") {
       const maxChallengeValue = calculateSequentialSum(MAX_DEPOSITS_SEQUENTIAL);
       setChallengeDisplay({
-        description: "Neste desafio, você fará depósitos com valores em sequência (1, 2, 3, ...).",
-        maxInfo: `O valor máximo que o app suporta é de R$100.000,00.`,
+        description:
+          "Neste desafio, você fará depósitos com valores em sequência (1, 2, 3, ...).",
+        maxInfo: `O valor máximo que o app suporta é de R$ ${maxChallengeValue},00.`,
+      });
+    } else if (goalType === "blocos") {
+      setChallengeDisplay({
+        description:
+          "Neste desafio, o app irá gerar uma lista de valores aleatórios que somados chegam ao seu valor alvo.",
+        maxInfo: "O valor máximo recomendado para este desafio é de R$10.000,00.",
+      });
+    } else if (goalType === "fixo") {
+      setChallengeDisplay({
+        description: "Neste desafio, você definirá um valor fixo de depósito.",
+        maxInfo: `O valor mínimo por depósito é de R$${MIN_FIXED_DEPOSIT},00.`,
       });
     } else {
       setChallengeDisplay(null);
     }
     setTargetValue("");
+    setFixedDepositValue("");
     setChallengeInfo(null);
   }, [goalType]);
 
+  // recalcula sempre que target ou fixed mudar
+  useEffect(() => {
+    const numericTarget = Number(targetValue);
+    const numericFixed = Number(fixedDepositValue);
+
+    if (goalType === "sequencial") {
+      if (numericTarget > 0) {
+        const maxChallengeValue = calculateSequentialSum(MAX_DEPOSITS_SEQUENTIAL);
+        if (numericTarget <= maxChallengeValue) {
+          const result = generateSequentialChallenge(numericTarget);
+          setChallengeInfo(result);
+        } else {
+          setChallengeInfo(null);
+        }
+      }
+    }
+
+    if (goalType === "blocos") {
+      if (numericTarget > 0) {
+        const result = generateBlockChallenge(numericTarget);
+        setChallengeInfo(result);
+      }
+    }
+
+    if (goalType === "fixo") {
+      if (
+        numericTarget >= MIN_FIXED_DEPOSIT &&
+        numericFixed >= MIN_FIXED_DEPOSIT
+      ) {
+        const result = generateFixedChallenge(numericTarget, numericFixed);
+        setChallengeInfo(result);
+      } else {
+        setChallengeInfo(null);
+      }
+    }
+  }, [goalType, targetValue, fixedDepositValue]);
+
   const addGoal = () => {
-    if (!title || !targetValue) return;
+    if (!title || !targetValue || !challengeInfo) return;
 
     const newGoal = {
       id: Date.now(),
@@ -47,8 +104,14 @@ export default function CreateGoalsPage() {
       description,
       goalType,
       currentValue: 0,
-      targetValue: goalType === "sequencial" ? challengeInfo.finalValue : Number(targetValue),
-      challengeInfo: goalType === "sequencial" ? challengeInfo : null,
+      targetValue:
+        goalType === "sequencial"
+          ? challengeInfo.finalValue
+          : goalType === "fixo"
+          ? challengeInfo.finalValue
+          : Number(targetValue),
+      challengeInfo,
+      completedDeposits: [],
       icon,
     };
 
@@ -57,27 +120,6 @@ export default function CreateGoalsPage() {
     localStorage.setItem("goals", JSON.stringify(savedGoals));
 
     navigate("/goals");
-  };
-
-  const handleTargetValueChange = (e) => {
-    const value = e.target.value;
-    setTargetValue(value);
-
-    if (goalType === "sequencial") {
-      const numericValue = Number(value);
-      const maxChallengeValue = calculateSequentialSum(MAX_DEPOSITS_SEQUENTIAL);
-      if (numericValue > maxChallengeValue) {
-        alert(`O valor que você quer juntar é muito alto para este desafio. O valor máximo é R$ ${maxChallengeValue},00.`);
-        return;
-      }
-
-      if (numericValue > 0) {
-        const result = generateSequentialChallenge(numericValue);
-        setChallengeInfo(result);
-      } else {
-        setChallengeInfo(null);
-      }
-    }
   };
 
   return (
@@ -93,12 +135,13 @@ export default function CreateGoalsPage() {
                 className="selected-icon-box"
                 onClick={() => setDropdown(!dropdown)}
               >
-                <img src={icon} alt="Selecionado" /> 
-                <FaChevronDown size={16}/>
+                <img src={icon} alt="Selecionado" />
+                <FaChevronDown size={16} />
               </div>
 
-
-              <div className={`icon-options-dropdown ${dropdown ? "active" : ""}`}>
+              <div
+                className={`icon-options-dropdown ${dropdown ? "active" : ""}`}
+              >
                 {availableIcons.map((img) => (
                   <button
                     key={img}
@@ -132,14 +175,16 @@ export default function CreateGoalsPage() {
           />
 
           <select value={goalType} onChange={(e) => setGoalType(e.target.value)}>
-            <option value="bloco">Bloco</option>
+            <option value="blocos">Bloco</option>
             <option value="sequencial">Sequencial</option>
             <option value="fixo">Fixo</option>
           </select>
 
           {challengeDisplay && (
             <div className="challenge-info">
-              <p className="challenge-description">{challengeDisplay.description}</p>
+              <p className="challenge-description">
+                {challengeDisplay.description}
+              </p>
               <p className="challenge-max-info">{challengeDisplay.maxInfo}</p>
             </div>
           )}
@@ -148,13 +193,45 @@ export default function CreateGoalsPage() {
             type="number"
             placeholder="Valor alvo"
             value={targetValue}
-            onChange={handleTargetValueChange}
+            onChange={(e) => setTargetValue(e.target.value)}
             max={100000}
           />
 
-          {challengeInfo && (
+          {goalType === "fixo" && (
+            <input
+              type="number"
+              placeholder="Valor do depósito (R$)"
+              value={fixedDepositValue}
+              onChange={(e) => setFixedDepositValue(e.target.value)}
+            />
+          )}
+
+          {challengeInfo && goalType === "sequencial" && (
             <div className="challenge-info-result">
-              <p>O valor de R$ {targetValue} será atingido em {challengeInfo.totalDeposits} depósitos.</p>
+              <p>
+                O valor de R$ {targetValue} será atingido em{" "}
+                {challengeInfo.totalDeposits} depósitos.
+              </p>
+              <p>O valor final será de R$ {challengeInfo.finalValue},00.</p>
+            </div>
+          )}
+
+          {challengeInfo && goalType === "blocos" && (
+            <div className="challenge-info-result">
+              <p>
+                O valor de R$ {targetValue} será atingido em{" "}
+                {challengeInfo.totalDeposits} depósitos.
+              </p>
+            </div>
+          )}
+
+          {challengeInfo && goalType === "fixo" && (
+            <div className="challenge-info-result">
+              <p>
+                O valor de R$ {targetValue} será atingido em{" "}
+                {challengeInfo.totalDeposits} depósitos de R${" "}
+                {fixedDepositValue},00.
+              </p>
               <p>O valor final será de R$ {challengeInfo.finalValue},00.</p>
             </div>
           )}
@@ -162,6 +239,7 @@ export default function CreateGoalsPage() {
           <button
             onClick={addGoal}
             className={`goal-btn ${goalType}`}
+            disabled={!title || !targetValue || !challengeInfo}
           >
             Adicionar Meta
           </button>

@@ -7,14 +7,15 @@ const SequentialChallengeGrid = ({ totalDeposits, completedDeposits, onDepositCl
   return (
     <div className="sequential-grid-container">
       <div className="sequential-grid">
-        {deposits.map((depositNumber) => { 
+        {deposits.map((depositNumber, index) => { // Adicione o 'index' aqui
           const isCompleted = completedDeposits.includes(depositNumber);
           
           return (
             <button
               key={depositNumber}
               className={`deposit-number-box ${isCompleted ? 'completed' : ''}`}
-              onClick={() => onDepositClick(depositNumber)}
+              // Chame onDepositClick com o valor e o índice
+              onClick={() => onDepositClick(depositNumber, index)}
             >
               {depositNumber}
             </button>

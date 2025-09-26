@@ -1,104 +1,121 @@
-
-
-/* --- --- */
-
 .goal-progress-card-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-m);
-  margin-top: var(--space-sm);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    margin-top: var(--space-sm);
 }
 
 .goal-progress-card-shadow {
-  width: 100%;
-  display: flex;
- 
-  background-color: var(--white);
-  border-radius: var(--radius-md);
-  border: var(--border-dashed);
-  padding: var(--space-m);
+    width: 100%;
+    display: flex;
+    border-radius: var(--radius-md);
+    border: var(--border-dashed);
+    padding: var(--space-m);
+    transition: background-color 0.3s ease-in-out;
 }
 
+.goal-progress-card-shadow.sequencial {
+    background-color: var(--pink-100);
+}
+
+.goal-progress-card-shadow.bloco {
+    background-color: var(--green-100);
+}
+
+.goal-progress-card-shadow.fixo {
+    background-color: var(--purple-100);
+}
 
 .goal-progress-card-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  
-  gap: var(--space-m);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
 }
 
 .goal-progress-card-header {
-  display: flex; 
-  gap: var(--space-md);  
-  align-items: center;
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
 }
 
 .goal-progress-card-icon {
-  width: 58px;
-  height:58px;
-  object-fit: contain;
-  padding: var(--space-xs);
-  margin-left: var(--space-m);
-  margin-right: var(--space-sx);
-  border: var(--border);
-  border-radius: var(--radius-md);
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    padding: var(--space-xs);
+    margin-left: var(--space-m);
+    margin-right: var(--space-sx);
+    border: var(--border);
+    border-radius: var(--radius-md);
 }
 
 .goal-progress-card-text {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .goal-progress-card-title {
-  font-weight: var(--bold);
-  font-size: var(--h5);
-  margin: 0;
+    font-weight: var(--bold);
+    font-size: var(--h5);
+    margin: 0;
 }
 
 .goal-progress-card-subtitle {
-  font-size: var(--label);
-  color: var(--grey-300); 
+    font-size: var(--label);
+    color: var(--grey-300);
 }
 
-.goal-progress-card-progress-bar-container { 
-  align-self: center;
-  position: relative;
-  width: 94%;  
-  height: 20px;
-  background-color: var(--grey-100);
-  border: var(--border);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+.goal-progress-card-progress-bar-container {
+    align-self: center;
+    position: relative;
+    width: 94%;
+    height: 20px;
+    background-color: var(--grey-100);
+    border: var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
 }
- 
+
 .goal-progress-card-progress-value {
-  font-size: var(--label); 
-  color: var(--grey-300);
-  padding-left: var(--space-m);
-  margin: 0;
-} 
- 
-.goal-progress-card-progress-bar {
-   border-right: var(--border);
-  height: 100%;
-  background-color: var(--pink-100);
-  transition: width 0.3s ease-in-out;
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-  position: relative; 
+    font-size: var(--label);
+    color: var(--grey-300);
+    padding-left: var(--space-m);
+    margin: 0;
 }
- 
-.goal-progress-card-percentage { 
-  color:var(--black);
-  font-weight: var(--bold);
-  font-size: var(--label-s);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  
+
+.goal-progress-card-progress-bar {
+    border-right: var(--border);
+    height: 100%;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.goal-progress-card-progress-bar.sequencial-progress {
+    background-color: var(--pink-200);
+}
+
+.goal-progress-card-progress-bar.bloco-progress {
+    background-color: var(--green-200);
+}
+
+.goal-progress-card-progress-bar.fixo-progress {
+    background-color: var(--purple-200);
+}
+
+
+.goal-progress-card-percentage {
+    color: var(--black);
+    font-weight: var(--bold);
+    font-size: var(--label-s);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .delete-goal-btn{
@@ -116,9 +133,3 @@
   color: var(--black);
    
  }
-
- .subtitle-count {
-  font-weight: bold;  
-  color: var(--pink-200); 
-  font-size: var(--label);  
-}
