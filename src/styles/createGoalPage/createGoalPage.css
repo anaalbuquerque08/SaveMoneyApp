@@ -1,11 +1,10 @@
 .goal-form {
-  width: 100%; 
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;  
+  gap: 15px;
   margin: 0 auto;
-}
-
+} 
 .goal-form input,
 .goal-form select,
 .goal-form button {
@@ -18,24 +17,24 @@
 }
 
 .goal-form button:hover {
-  background-color: var(--grey-100); 
+  background-color: var(--grey-100);
 }
 
 .icon-and-input-row {
   display: flex;
-  align-items: center; 
-  gap: var(--space-md); 
-} 
+  align-items: center;
+  gap: var(--space-md);
+}
 .icon-selector-container {
-  width: 30%; 
-  height: 60px; 
-  position: relative; 
+  width: 30%;
+  height: 60px;
+  position: relative;
 }
 
 .selected-icon-box {
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
   padding: 6px;
   border: var(--border);
   border-radius: var(--radius-md);
@@ -43,7 +42,7 @@
   background-color: var(--white);
   width: 100%;
   height: 100%;
-  gap: 6px; 
+  gap: 6px;
 }
 
 .selected-icon-box img {
@@ -52,62 +51,89 @@
   object-fit: contain;
 }
 
+/* --- ESTILO DA SETA (FaChevronDown) --- */
 .selected-icon-box svg {
   font-size: 18px;
   color: var(--black);
+  transition: transform 0.3s ease; /* Adiciona transição para rotação */
+  transform: rotate(0deg); /* Estado inicial */
 }
 
-.icon-options-dropdown { 
-  transition: 0.2s;
-  display: none;
-  grid-template-columns: repeat(4, 1fr);  
-  grid-auto-rows: 64px; 
+/* Rotaciona a seta quando o dropdown estiver aberto */
+.selected-icon-box.active svg {
+  transform: rotate(180deg);
+}
+
+/* --- ESTILO DO DROPDOWN DE ÍCONES (COM ANIMAÇÃO) --- */
+.icon-options-dropdown {
+  /* Transições para fluidez: max-height, opacidade e padding */
+  transition: opacity 0.3s ease-out, max-height 0.4s ease-in-out, padding 0.3s ease-out;
+
+  /* Estado Inicial: Oculto, sem altura e transparente */
+  opacity: 0;
+  max-height: 0;
+  padding: 0 12px; /* Padding vertical 0, horizontal mantido */
+
+  /* Propriedades de layout essenciais */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 64px;
   gap: 10px;
   margin-top: 5px;
-  padding: 12px;
+
+  /* Propriedades visuais e de posicionamento */
   border: var(--border);
   border-radius: var(--radius-md);
   background-color: var(--white);
+  overflow: hidden; /* CRÍTICO: Esconde o conteúdo que está com altura 0 */
   position: absolute;
   z-index: 10;
   top: 116%;
   left: 0;
-  width: 440%;  
-  max-height: 400px;  
-  overflow-y: auto;   
+  width: 440%;
 }
 
+/* Estado Ativo: Visível e Aberto */
+.icon-options-dropdown.active {
+  opacity: 1;
+  max-height: 400px; /* Altura suficiente para mostrar o conteúdo */
+  padding: 12px; /* Restaura o padding completo ao abrir */
+  overflow-y: auto; /* Permite scroll se exceder 400px */
+}
+
+/* --- ESTILO DOS BOTÕES DE ÍCONE --- */
 .icon-options-dropdown button {
+  height: 60px;
+  width: 60px;
   border: 2px solid transparent;
-  background-color: var(--white); 
-  padding: 5px;
+  background-color: var(--white);
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .icon-options-dropdown button.selected {
-  background-color: var(--yellow-100); 
-  border: var(--border); 
+  background-color: var(--yellow-100);
+  border: var(--border);
+}
+
+.icon-options-dropdown button:hover {
+  background-color: var(--grey-100);
 }
 
 .icon-options-dropdown img {
-  height: 45px; 
-  height: 45px; 
+  height: 45px;
+  height: 45px;
   object-fit: contain;
 }
 
-.icon-options-dropdown.active {
-  display: grid;
-}
-
-
+/* --- OUTROS ESTILOS DE FORMULÁRIO (MANTIDOS) --- */
 .goal-form input,
-.goal-form select { 
-  height: 60px; 
+.goal-form select {
+  height: 60px;
   font-size: 16px;
 }
 
@@ -118,8 +144,7 @@
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background: white url('data:image/svg+xml,...') no-repeat right center;
-  background-size: 16px;
+  /* A URL da imagem de fundo para a seta de select precisa ser adicionada aqui se houver uma */
 }
 
 .goal-btn {
@@ -137,7 +162,7 @@
   font-weight: var(--bold);
   cursor: pointer;
   transition: 0.2s;
-   margin-bottom: 120px;
+  margin-bottom: 120px;
 }
 
 /* Verde para bloco */
@@ -153,7 +178,6 @@
 /* Azul para fixo */
 .goal-btn.fixo {
   background: var(--purple-100);
-  
 }
 
 .goal-btn:hover {

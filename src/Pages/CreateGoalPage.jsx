@@ -108,8 +108,8 @@ export default function CreateGoalsPage() {
         goalType === "sequencial"
           ? challengeInfo.finalValue
           : goalType === "fixo"
-          ? challengeInfo.finalValue
-          : Number(targetValue),
+            ? challengeInfo.finalValue
+            : Number(targetValue),
       challengeInfo,
       completedDeposits: [],
       icon,
@@ -132,7 +132,8 @@ export default function CreateGoalsPage() {
           <section className="icon-and-input-row">
             <div className="icon-selector-container">
               <div
-                className="selected-icon-box"
+                // APLICAÇÃO DA CLASSE 'ACTIVE' PARA ROTACIONAR A SETA
+                className={`selected-icon-box ${dropdown ? "active" : ""}`}
                 onClick={() => setDropdown(!dropdown)}
               >
                 <img src={icon} alt="Selecionado" />
@@ -140,6 +141,7 @@ export default function CreateGoalsPage() {
               </div>
 
               <div
+                // APLICAÇÃO DA CLASSE 'ACTIVE' PARA ABRIR O DROPDOWN COM ANIMAÇÃO
                 className={`icon-options-dropdown ${dropdown ? "active" : ""}`}
               >
                 {availableIcons.map((img) => (
@@ -191,6 +193,7 @@ export default function CreateGoalsPage() {
 
           <input
             type="number"
+            inputMode="numeric"
             placeholder="Valor alvo"
             value={targetValue}
             onChange={(e) => setTargetValue(e.target.value)}
@@ -200,6 +203,7 @@ export default function CreateGoalsPage() {
           {goalType === "fixo" && (
             <input
               type="number"
+              inputMode="numeric"
               placeholder="Valor do depósito (R$)"
               value={fixedDepositValue}
               onChange={(e) => setFixedDepositValue(e.target.value)}

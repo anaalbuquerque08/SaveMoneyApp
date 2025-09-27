@@ -14,8 +14,7 @@ const CircularProgress = ({ percentage = 24, size = 100, strokeWidth = 10 }) => 
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-      >
-        {/* Fundo do círculo */}
+      > 
         <circle
           className="progress-circle-bg"
           cx={size / 2}
@@ -23,8 +22,7 @@ const CircularProgress = ({ percentage = 24, size = 100, strokeWidth = 10 }) => 
           r={radius}
           strokeWidth={strokeWidth}
         />
-
-        {/* Círculo de progresso */}
+ 
         <circle
           className="progress-circle"
           cx={size / 2}
@@ -36,8 +34,7 @@ const CircularProgress = ({ percentage = 24, size = 100, strokeWidth = 10 }) => 
             strokeDashoffset: strokeDashoffset,
           }}
         />
-
-        {/* Texto da porcentagem */}
+ 
         <text
           x="50%"
           y="50%"

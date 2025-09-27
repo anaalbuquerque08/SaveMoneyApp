@@ -23,8 +23,7 @@ function App() {
   if (loading) {
     return (
       <div className="splash-screen">
-        <img src={coin} alt="Depozy Logo" className="splash-logo" />
-        {/* Pode colocar mascote ou animação aqui */}
+        <img src={coin} alt="Depozy Logo" className="splash-logo" /> 
       </div>
     );
   }
