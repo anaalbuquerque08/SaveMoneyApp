@@ -94,7 +94,7 @@ export default function GoalDetailsPage() {
 
     return (
         <div className="page">
-            <Header type="home" showButton={true} showContent={false} />
+            <Header type="home" showButton={true} showContent={false} showEyeButton={false}/>
             <GeneralFadeIn>
                 <div className="goal-details-header-content">
                     <GoalProgressCard

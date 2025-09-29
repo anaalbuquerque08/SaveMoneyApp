@@ -12,6 +12,7 @@ import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import SubtitleContainer from "../Components/States/SubtitleState";
 import Header from "../Components/General/Header";
 import subtitleStates from "../Constants/subtitleStates";
+// Importa o array de CATEGORIAS agrupadas
 import availableIcons from "../Constants/goalIcons";
 import "../styles/createGoalPage/createGoalPage.css";
 
@@ -24,7 +25,10 @@ export default function CreateGoalsPage() {
   const [goalType, setGoalType] = useState("blocos");
   const [targetValue, setTargetValue] = useState("");
   const [fixedDepositValue, setFixedDepositValue] = useState("");
-  const [icon, setIcon] = useState(availableIcons[0]);
+
+  // CORREÇÃO: Inicializa o icon com o primeiro ícone da primeira categoria.
+  const [icon, setIcon] = useState(availableIcons[0].icons[0]);
+
   const [dropdown, setDropdown] = useState(false);
   const [challengeInfo, setChallengeInfo] = useState(null);
   const [challengeDisplay, setChallengeDisplay] = useState(null);
@@ -57,8 +61,7 @@ export default function CreateGoalsPage() {
     setFixedDepositValue("");
     setChallengeInfo(null);
   }, [goalType]);
-
-  // recalcula sempre que target ou fixed mudar
+ 
   useEffect(() => {
     const numericTarget = Number(targetValue);
     const numericFixed = Number(fixedDepositValue);
@@ -124,7 +127,7 @@ export default function CreateGoalsPage() {
 
   return (
     <div className="page">
-      <Header type="home" showButton={true} showContent={false} />
+      <Header type="home" showButton={true} showContent={false} showEyeButton={false} />
       <GeneralFadeIn>
         <SubtitleContainer text={subtitleStates.goals.text} showButton={true} />
 
@@ -132,7 +135,6 @@ export default function CreateGoalsPage() {
           <section className="icon-and-input-row">
             <div className="icon-selector-container">
               <div
-                // APLICAÇÃO DA CLASSE 'ACTIVE' PARA ROTACIONAR A SETA
                 className={`selected-icon-box ${dropdown ? "active" : ""}`}
                 onClick={() => setDropdown(!dropdown)}
               >
@@ -140,31 +142,47 @@ export default function CreateGoalsPage() {
                 <FaChevronDown size={16} />
               </div>
 
+
               <div
-                // APLICAÇÃO DA CLASSE 'ACTIVE' PARA ABRIR O DROPDOWN COM ANIMAÇÃO
                 className={`icon-options-dropdown ${dropdown ? "active" : ""}`}
               >
-                {availableIcons.map((img) => (
-                  <button
-                    key={img}
-                    type="button"
-                    className={icon === img ? "selected" : ""}
-                    onClick={() => {
-                      setIcon(img);
-                      setDropdown(false);
-                    }}
-                  >
-                    <img src={img} alt="ícone" />
-                  </button>
+                {availableIcons.map((category, index) => (
+                  <React.Fragment key={index}>
+                    <div className="icon-dropdown-container" > 
+
+                      <div className="icon-category-title">
+                        {category.title}
+                      </div>
+
+                      <div className="icon-category-icons">
+                        {category.icons.map((img) => (
+                          <button
+                            key={img}
+                            type="button"
+                            className={icon === img ? "selected" : ""}
+                            onClick={() => {
+                              setIcon(img);
+                              setDropdown(false);
+                            }}
+                          >
+                            <img src={img} alt="ícone" />
+                          </button>
+                        ))}
+                      </div>
+
+                    </div>
+
+                  </React.Fragment>
                 ))}
               </div>
+
             </div>
             <input
               type="text"
               placeholder="Título da meta"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              maxLength={15}
+              maxLength={22}
             />
           </section>
 

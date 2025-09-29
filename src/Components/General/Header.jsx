@@ -7,7 +7,8 @@ export default function Header({
   showButton = true, 
   showContent = true, 
   onToggle,          
-  valuesVisible      
+  valuesVisible,     
+  showEyeButton 
 }) {
   return (
     <div className="header"> 
@@ -15,6 +16,7 @@ export default function Header({
         showButton={showButton} 
         onToggle={onToggle}
         valuesVisible={valuesVisible}
+        showEyeButton={showEyeButton} 
       />
       <HeaderContent showContent={showContent}/>
     </div>
