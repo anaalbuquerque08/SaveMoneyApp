@@ -1,0 +1,90 @@
+{
+  "header": {
+    "start_saving_question": "¿Quieres empezar a ahorrar?",
+    "create_goal_button": "Crear meta"
+  },
+  "empty_state": {
+    "goals_empty_text": "Aún no tienes ninguna meta :(",
+    "goals_empty_button": "Empieza a ahorrar <3",
+    "deposit_empty_text": "Aún no tienes ningún depósito :(",
+    "deposit_empty_button": "Primer Depósito"
+  },
+  "subtitle_state": {
+    "goals_subtitle_text": "Mis metas",
+    "deposit_subtitle_text": "Mis depósitos",
+    "aquisitions_subtitle_text": "Mis logros"
+  },
+  "goals": {
+  "add_goal_button": "Añadir Meta",
+  "type": {
+    "blocks": "Bloque",
+    "sequential": "Secuencial",
+    "fixed": "Fijo"
+  },
+  "input": {
+    "title_placeholder": "Título de la meta",
+    "description_placeholder": "Descripción (máx. 70 caracteres)",
+    "target_value_placeholder": "Valor objetivo",
+    "fixed_deposit_placeholder": "Valor del depósito ($)"
+  },
+  "challenge": {
+    "sequential_description": "En este desafío, harás depósitos con valores en secuencia (1, 2, 3, ...).", 
+    "sequential_max_info": "El valor máximo que la app soporta es de $ {{value}}.",
+    "block_description": "En este desafío, la app generará una lista de valores aleatorios que sumados alcanzan tu valor objetivo.",
+    "block_max_info": "El valor máximo recomendado para este desafío es de $10.000.",
+    "fixed_description": "En este desafío, definirás un valor fijo de depósito.", 
+    "fixed_min_info": "El valor mínimo por depósito es de $ {{value}}."
+  },
+  "result": { 
+    "sequential_deposits": "El valor de $ {{target}} se alcanzará en {{deposits}} depósitos.", 
+    "block_deposits": "El valor de $ {{target}} se alcanzará en {{deposits}} depósitos.", 
+    "fixed_deposits": "El valor de $ {{target}} se alcanzará en {{deposits}} depósitos de $ {{fixed}}.", 
+    "final_value": "El valor final será de $ {{value}}."
+  },
+  "alt": {
+    "goal_icon": "ícono de la meta" 
+  },
+  "details": {
+    "sequential_challenge_title": "Desafío Secuencial",
+    "block_challenge_title": "Desafío en Bloques",
+    "fixed_challenge_title": "Desafío Fijo",
+    "deposit_count": "({{current}}/{{total}} depósitos)",
+    "delete_button": "Eliminar Meta",
+    "delete_confirm": "¿Estás seguro de que quieres eliminar la meta?"
+  }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language_label": "Idioma",
+    "currency_label": "Moneda", 
+    "notifications": "Alertas",
+    "support_label": "Apoyar",
+    "about_label": "Info App",
+    "language_changed": "Idioma cambiado con éxito."
+  },
+  "common": {
+    "close_button": "Cerrar",
+    "of": "de",
+    "current_of_target": "{{current}} de {{target}}"
+  },
+  "icon_categories": {
+    "finance": "Finanzas y Riqueza",
+    "health": "Salud y Bienestar",
+    "home_work": "Hogar, Reformas y Trabajo",
+    "travel_transport_docs": "Viajes, Transporte y Documentos",
+    "tech_education": "Tecnología y Educación",
+    "shopping": "Compras y Consumo",
+    "relationships_events": "Relaciones y Eventos",
+    "art_culture": "Arte y Cultura",
+    "social_causes": "Causas Sociales",
+    "pets": "Mascotas",
+    "people": "Gente"
+  },
+  "acquisitions": {
+    "money_icon_alt": "Ícono de dinero",
+    "total_collected_title": "Has ahorrado un total de",
+    "target_label": "Meta",
+    "of_total_goals": "del total de metas",
+    "remaining_value": "Faltan {{value}} para alcanzar tu meta"
+  }
+}

@@ -1,12 +1,12 @@
 const subtitleStates = {
   goals: {
-    text: "Minhas metas"
+    text: "subtitle_state.goals_subtitle_text"
   },
   deposit: {
-    text: "Meus depósitos"
+    text: "subtitle_state.deposit_subtitle_text"
   },
   aquisitions: {
-    text: "Minhas conquistas"
+    text: "subtitle_state.aquisitions_subtitle_text"
   },
 };
 

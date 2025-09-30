@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { useTranslation } from 'react-i18next';  
 
 //* Components
 import Header from "../Components/General/Header";
@@ -12,6 +13,7 @@ import ChallengeGrid from "../Components/Challenge/ChallengeGrid";
 import "../styles/goalDetailsPage/goalDetailsPage.css";
 
 export default function GoalDetailsPage() {
+    const { t } = useTranslation();  
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -26,6 +28,11 @@ export default function GoalDetailsPage() {
         challengeInfo,
         completedDeposits: initialCompletedDeposits,
     } = location.state || {};
+    
+    if (!id) {
+        navigate("/goals");
+        return null;
+    }
 
     const [completedDeposits, setCompletedDeposits] = useState(initialCompletedDeposits || []);
     const [currentGoalValue, setCurrentGoalValue] = useState(currentValue || 0);
@@ -62,7 +69,11 @@ export default function GoalDetailsPage() {
         localStorage.setItem("goals", JSON.stringify(updatedGoals));
     };
 
-    const handleDeleteGoal = () => {
+    const handleDeleteGoal = () => { 
+        if (!window.confirm(t("goals.details.delete_confirm", { title }))) {
+            return;
+        }
+
         const savedGoals = JSON.parse(localStorage.getItem("goals") || "[]");
         const updatedGoals = savedGoals.filter(goal => goal.id !== id);
         localStorage.setItem("goals", JSON.stringify(updatedGoals));
@@ -70,25 +81,58 @@ export default function GoalDetailsPage() {
     };
 
     const totalDeposits = challengeInfo?.totalDeposits || 0;
+        
+    const getChallengeSubtitle = (type) => {
+        let challengeTitleKey;
+        let subtitleClass;
 
-    // Prepara os dados para o Desafio Sequencial
+        switch (type) {
+            case "sequencial":
+                challengeTitleKey = "goals.details.sequential_challenge_title";
+                subtitleClass = "sequencial";
+                break;
+            case "blocos":
+                challengeTitleKey = "goals.details.block_challenge_title";
+                subtitleClass = "bloco"; // Note: A classe deve ser 'bloco'
+                break;
+            case "fixo":
+                challengeTitleKey = "goals.details.fixed_challenge_title";
+                subtitleClass = "fixo";
+                break;
+            default:
+                return null;
+        }
+        
+        // Retorna o JSX completo, com a tradução e a estilização no span
+        return (
+            <>
+                {t(challengeTitleKey)}{" "}
+                <span className={`subtitle-count ${subtitleClass}`}>
+                    {/* Chama a tradução para o contador com os valores numéricos */}
+                    {t("goals.details.deposit_count", {
+                        current: completedDeposits.length,
+                        total: totalDeposits,
+                    })}
+                </span>
+            </>
+        );
+    };
+    
     const sequentialItems = Array.from({ length: totalDeposits }, (_, i) => ({
         id: i,
         label: `${i + 1}`,
         value: i + 1,
     }));
-
-    // Prepara os dados para o Desafio de Blocos
+    
     const blockItems = (challengeInfo?.depositsList || []).map((depositValue, index) => ({
         id: index,
         label: `${depositValue}`,
         value: depositValue,
     }));
-
-    // Prepara os dados para o Desafio Fixo
+        
     const fixedItems = Array.from({ length: totalDeposits }, (_, i) => ({
         id: i,
-        label: `  ${challengeInfo.fixedDepositValue}`,
+        label: `R$ ${challengeInfo.fixedDepositValue}`,
         value: challengeInfo.fixedDepositValue,
     }));
 
@@ -105,21 +149,13 @@ export default function GoalDetailsPage() {
                         target={targetValue}
                         goalType={goalType}
                     />
-
-                </div>
-
+                </div> 
                 {goalType === "sequencial" && (
                     <>
                         <SubtitleContainer
-                            text={
-                                <>
-                                    Desafio Sequencial {" "}
-                                    <span className="subtitle-count sequencial">
-                                        ({completedDeposits.length}/{totalDeposits} depósitos)
-                                    </span>
-                                </>
-                            }
-                            showButton={true}
+                            // CORRIGIDO: Passa o JSX como children
+                            children={getChallengeSubtitle("sequencial")}
+                            showButton={false}
                         />
                         <ChallengeGrid
                             challengeItems={sequentialItems}
@@ -129,19 +165,13 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-
+    
                 {goalType === "blocos" && (
                     <>
                         <SubtitleContainer
-                            text={
-                                <>
-                                    Desafio em Blocos {" "}
-                                    <span className="subtitle-count bloco">
-                                        ({completedDeposits.length}/{challengeInfo.totalDeposits} depósitos)
-                                    </span>
-                                </>
-                            }
-                            showButton={true}
+                            // CORRIGIDO: Passa o JSX como children
+                            children={getChallengeSubtitle("blocos")}
+                            showButton={false}
                         />
                         <ChallengeGrid
                             challengeItems={blockItems}
@@ -151,19 +181,13 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-
+    
                 {goalType === "fixo" && (
                     <>
                         <SubtitleContainer
-                            text={
-                                <>
-                                    Desafio Fixo {" "}
-                                    <span className="subtitle-count fixo">
-                                        ({completedDeposits.length}/{totalDeposits} depósitos)
-                                    </span>
-                                </>
-                            }
-                            showButton={true}
+                            // CORRIGIDO: Passa o JSX como children
+                            children={getChallengeSubtitle("fixo")}
+                            showButton={false}
                         />
                         <ChallengeGrid
                             challengeItems={fixedItems}
@@ -173,9 +197,9 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-
+    
                 <div className="delete-goal-btn" onClick={handleDeleteGoal}>
-                    <FaTrash className="delete-goal-btn-icon" size={24} />
+                    <FaTrash className="delete-goal-btn-icon" size={24} /> 
                 </div>
             </GeneralFadeIn>
         </div>

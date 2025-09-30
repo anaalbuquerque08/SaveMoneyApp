@@ -1,8 +1,4 @@
-// -----------------------------------------------------
-// IMPORTS DOS 83 ÍCONES
-// -----------------------------------------------------
-import activism from "../assets/icons/activism.png";
-import animal from "../assets/icons/animal.png";
+ import animal from "../assets/icons/animal.png";
 import bandaid from "../assets/icons/bandaid.png";
 import bike from "../assets/icons/bike.png";
 import blacklivesmatter from "../assets/icons/blacklivesmatter.png";
@@ -28,7 +24,6 @@ import donation from "../assets/icons/donation.png";
 import dress from "../assets/icons/dress.png";
 import driverslicense from "../assets/icons/driverslicense.png";
 import education from "../assets/icons/education.png";
-import flowers from "../assets/icons/flowers.png";
 import gamecontroller from "../assets/icons/gamecontroller.png";
 import gift from "../assets/icons/gift.png";
 import guitar from "../assets/icons/guitar.png";
@@ -40,7 +35,6 @@ import health from "../assets/icons/health.png";
 import heart from "../assets/icons/heart.png";
 import house from "../assets/icons/house.png";
 import ideia from "../assets/icons/ideia.png";
-import kid from "../assets/icons/kid.png";
 import label from "../assets/icons/label.png";
 import lgbt from "../assets/icons/lgbt.png";
 import makeup from "../assets/icons/makeup.png";
@@ -68,34 +62,22 @@ import selfcare from "../assets/icons/selfcare.png";
 import show from "../assets/icons/show.png";
 import skate from "../assets/icons/skate.png";
 import smile from "../assets/icons/smile.png";
-
 import solarenergy from "../assets/icons/solarenergy.png";
-
 import tenis from "../assets/icons/tenis.png";
 import theater from "../assets/icons/theater.png";
-
+import theater2 from "../assets/icons/theater2.png";
+import ceramic from "../assets/icons/ceramic.png";
 import trans from "../assets/icons/trans.png";
 import trunk from "../assets/icons/trunk.png";
 import vacation from "../assets/icons/vacation.png";
 import wallet from "../assets/icons/wallet.png";
 import cat from "../assets/icons/cat.png";
 import food from "../assets/icons/food.png";
-import friends from "../assets/icons/friends.png";
 import tattoo from "../assets/icons/tattoo.png";
 import teddybear from "../assets/icons/teddybear.png";
-import singlemoney from "../assets/icons/singlemoney.png";
-
-
-import fun from "../assets/icons/fun.png";
-import soccerball from "../assets/icons/soccerball.png";
 import ticket from "../assets/icons/ticket.png";
-import spider from "../assets/icons/spider.png";
-
-
-//? Pessoas
 import baby1 from "../assets/icons/baby1.png";
 import baby2 from "../assets/icons/baby2.png";
-
 import kid1 from "../assets/icons/kid1.png";
 import kid2 from "../assets/icons/kid2.png";
 import kid3 from "../assets/icons/kid3.png";
@@ -114,146 +96,106 @@ import adult5 from "../assets/icons/adult5.png";
 import adult6 from "../assets/icons/adult6.png"; 
 import adult7 from "../assets/icons/adult7.png";  
 import adult8 from "../assets/icons/adult8.png";  
- 
 import oldman1 from "../assets/icons/oldman1.png";  
 import oldman2 from "../assets/icons/oldman2.png";  
-
-
 import humanrights from "../assets/icons/humanrights.png";  
 import autism from "../assets/icons/autism.png";  
 import neurodivergent from "../assets/icons/neurodivergent.png";  
 import policy from "../assets/icons/policy.png";  
-
 import map from "../assets/icons/map.png";  
 import drink from "../assets/icons/drink.png";  
 import christmas from "../assets/icons/christmas.png"; 
 import newyear from "../assets/icons/newyear.png"; 
 import yo15 from "../assets/icons/15yo.png"; 
 import eletricguitar from "../assets/icons/eletricguitar.png"; 
- import party from "../assets/icons/party.png"; 
+import fun from "../assets/icons/fun.png";
+import party from "../assets/icons/party.png"; 
+import spider from "../assets/icons/spider.png";
+import soccerball from "../assets/icons/soccerball.png";
+import flowers from "../assets/icons/flowers.png";
+import singlemoney from "../assets/icons/singlemoney.png";
+import kid from "../assets/icons/kid.png";
+import friends from "../assets/icons/friends.png";
+import activism from "../assets/icons/activism.png";
+import cinema from "../assets/icons/cinema.png";
+ 
+// export const availableIcons = [ /* ... */ ];
 
-export const availableIcons = [
-    // -----------------------------------------------------
-    // TA CERTO
-    // -----------------------------------------------------
+export const availableIcons = [ 
     {
-        title: "Finanças e Riqueza",
+        title: "icon_categories.finance",
         icons: [
             coin, money, moneybag,
-            wallet,returnmoney, card,  trunk,  cart,label,ticket,piggy,smile,
-             
+            wallet,returnmoney, card, trunk, cart, label, ticket, piggy, smile,
         ]
-    },
-
-    // -----------------------------------------------------
-    // TA CERTO
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Saúde e Bem-Estar",
+        title: "icon_categories.health",
         icons: [
-            health, heart, bandaid, medicine, needle,gym, selfcare,
-             makeup, 
+            health, heart, bandaid, medicine, needle, gym, selfcare,
+            makeup, 
         ]
-    },
-
-    // -----------------------------------------------------
-    //  TA CERTO
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Casa , Reformas e Trabalho",
+        title: "icon_categories.home_work",
         icons: [
-            house,retirement, hammer,cone, solarenergy, plant, business, briefcase, 
-               
+            house, retirement, hammer, cone, solarenergy, plant, business, briefcase, 
         ]
-    },    // -----------------------------------------------------
-    // TA CERTO
-    // -----------------------------------------------------
+    },     
     {
-        title: "Viagens, Transporte e Documentos",
+        title: "icon_categories.travel_transport_docs",
         icons: [
-            driverslicense, passport,mountain, vacation,
-               skate,bike, motorcycle,car,  plane, cruise,  compass,map
+            driverslicense, passport, mountain, vacation,
+            skate, bike, motorcycle, car, plane, cruise, compass, map
         ]
-    },
-    // -----------------------------------------------------
-    // TA CERTO
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Tech e Educação",
+        title: "icon_categories.tech_education",
         icons: [
             education, books, ideia, computer,
-            phone, headset, gamecontroller,  mike, 
-            
+            phone, headset, gamecontroller, mike, 
         ]
-    },
-        // -----------------------------------------------------
-    //   ainda falta
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Compras e Consumo",
+        title: "icon_categories.shopping",
         icons: [ 
-              clothes,costume, dress, tenis,  tattoo, teddybear,food, drink,
+            clothes, costume, dress, tenis, tattoo, teddybear, food, drink,
         ]
-    },
-
-
-    // -----------------------------------------------------
-    // 5. RELACIONAMENTOS E EVENTOS SOCIAIS (9 Ícones)
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Relacionamentos e Eventos",
+        title: "icon_categories.relationships_events",
         icons: [
-            ring,bride, church,newyear, yo15 ,cake,
-             gift, christmas ,  
+            ring, bride, church, newyear, yo15, cake,
+            gift, christmas,  
         ]
-    },
-
- 
-
-    // -----------------------------------------------------
-    // 7. ARTE, PERFORMANCE E CULTURA (10 Ícones)
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Arte e Cultura",
+        title: "icon_categories.art_culture",
         icons: [
-            guitar, eletricguitar, piano, show,croche,  paint,
-            painting,   
-            theater,  
- 
+            guitar, eletricguitar, piano, show, croche, paint,
+            painting, ceramic,   
+            fun, cinema, theater, theater2,  
         ]
-    },
-
-    // -----------------------------------------------------
-    // 8. INCLUSÃO, SOCIEDADE E PETS (12 Ícones)
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Causas Sociais",
+        title: "icon_categories.social_causes",
         icons: [
-           blacklivesmatter, lgbt, trans, donation, humanrights,autism, neurodivergent, policy ,
+            blacklivesmatter, lgbt, trans, donation, humanrights, autism, neurodivergent, policy,
         ]
-    },
-    // -----------------------------------------------------
-    // 8. INCLUSÃO, SOCIEDADE E PETS (12 Ícones)
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Pets",
+        title: "icon_categories.pets",
         icons: [ 
-            animal, dog, cat,  
-                 habbit,
+            animal, dog, cat, habbit,
         ]
-    },
-    // -----------------------------------------------------
-    // 9. DIVERSÃO, ESPORTE E OUTROS (14 Ícones)
-    // -----------------------------------------------------
+    }, 
     {
-        title: "Pessoas",
+        title: "icon_categories.people",
         icons: [ 
-          baby1,baby2,kid1,kid2,kid10,kid5,kid3,kid4,kid6,kid7,kid8,kid9,adult1,adult2,adult3,adult4,adult5,adult6,adult7,adult8,
-            oldman,oldman1,oldman2, oldwoman,
+            baby1, baby2, kid1, kid2, kid10, kid5, kid3, kid4, kid6, kid7, kid8, kid9, adult1, adult2, adult3, adult4, adult5, adult6, adult7, adult8,
+            oldman, oldman1, oldman2, oldwoman,
         ]
     },
 ];
 
 export default availableIcons;
-
-  

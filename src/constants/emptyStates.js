@@ -1,16 +1,15 @@
-//Aqui eu coloquei os valores dos estados iniciais quando não possui meta ou deposito. 
-//Refere ao Estado - EmptyState
-
+ 
 const emptyStates = {
   goals: {
-     
-    text: "Você ainda não possui nenhuma meta :(",
-    buttonLabel: "Comece a juntar <3",
+ 
+    text: "empty_state.goals_empty_text",
+ 
+    buttonLabel: "empty_state.goals_empty_button",
     route: "/create-goal"
   },
-  deposit: {
-    text: "Você ainda não possui nenhum depósito :(",
-    buttonLabel: "Primeiro Depósito",
+  deposit: { 
+    text: "empty_state.deposit_empty_text", 
+    buttonLabel: "empty_state.deposit_empty_button",
     route: "/goals"
   },
 };

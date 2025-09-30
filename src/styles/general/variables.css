@@ -67,6 +67,7 @@
   --green-200: #5E7447;
 
   /* COLORS - YELLOW */
+  --yellow-50: hsl(39, 83%, 88%);
   --yellow-100: #FFDC9A;
   --yellow-150: #F6C25F;
   --yellow-200: #E0960D;

@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-// IMPORTANTE: Removido useCallback, pois usaremos useEffect para persistência
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { calculateGoalTotals } from "../utils/goalCalculations";
+import { useTranslation } from 'react-i18next';
+import { getCurrencyDataByLanguage } from "../utils/currencyUtils";  
 
 //* Components
 import Header from "../Components/General/Header";
@@ -20,33 +21,31 @@ import HomeFadeIn from "../Components/General/AnimatedPage/HomeFadeIn";
 //* Styles
 import "../styles/general/variables.css";
 
-// Função auxiliar para carregar o estado do localStorage
 const getInitialVisibility = () => {
-    // Tenta obter o valor salvo. Se for 'null', o padrão é true (visível).
     const saved = localStorage.getItem('valuesVisible');
-    // Converte a string salva ('true' ou 'false') para boolean.
-    return saved === null ? true : JSON.parse(saved); 
+    return saved === null ? true : JSON.parse(saved);
 };
 
 
 export default function HomePage() {
+    const { i18n } = useTranslation();
     const [goals, setGoals] = useState([]);
     const navigate = useNavigate();
 
     const [totalCurrent, setTotalCurrent] = useState(0);
     const [lastDeposits, setLastDeposits] = useState([]);
- 
-    const [valuesVisible, setValuesVisible] = useState(getInitialVisibility); 
- 
+
+    const [valuesVisible, setValuesVisible] = useState(getInitialVisibility);
+
     const toggleValues = (isVisible) => {
         setValuesVisible(isVisible);
     };
- 
-    useEffect(() => { 
-        localStorage.setItem('valuesVisible', JSON.stringify(valuesVisible));
-    }, [valuesVisible]);  
 
- 
+    useEffect(() => {
+        localStorage.setItem('valuesVisible', JSON.stringify(valuesVisible));
+    }, [valuesVisible]);
+
+
     useEffect(() => {
         const savedGoals = JSON.parse(localStorage.getItem("goals") || "[]");
         setGoals(savedGoals);
@@ -76,13 +75,19 @@ export default function HomePage() {
     } else if (goals.length > 0 && totalCurrent > 0) {
         homeState = "complete";
     }
+ 
 
-    // FUNÇÕES AUXILIARES MANTIDAS
-    const formatDepositValue = (value) => {
+    const formatDepositValue = (value) => { 
+        const { symbol: currencyPrefix, locale: currentLocale } = getCurrencyDataByLanguage(i18n.language);
+
         if (valuesVisible) {
-            return `+ R$${value.toFixed(2).replace('.', ',')}`; 
+            const formattedValue = value.toLocaleString(currentLocale, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            });
+            return `+ ${currencyPrefix} ${formattedValue}`; 
         }
-        return '+ R$•••••'; 
+        return `+ ${currencyPrefix} •••••`;  
     }
 
     const getMaskClass = () => {
@@ -91,11 +96,11 @@ export default function HomePage() {
 
     return (
         <div className="home-page">
-            <Header 
-                type="home" 
-                showButton={false} 
-                onToggle={toggleValues}      
-                valuesVisible={valuesVisible} 
+            <Header
+                type="home"
+                showButton={false}
+                onToggle={toggleValues}
+                valuesVisible={valuesVisible}
             />
             <HomeFadeIn>
                 {homeState === "empty" && (
@@ -108,9 +113,9 @@ export default function HomePage() {
                 {(homeState === "goalNoDeposit" || homeState === "complete") && (
                     <>
                         <SubtitleContainer text={subtitleStates.aquisitions.text} showButton={true} />
-                        
-                        <AcquisitionCard goals={goals} valuesVisible={valuesVisible} /> 
-                        
+
+                        <AcquisitionCard goals={goals} valuesVisible={valuesVisible} />
+
                         <SubtitleContainer text={subtitleStates.deposit.text} showButton={false} />
                         <DepositBox>
                             {lastDeposits.length > 0 ? (

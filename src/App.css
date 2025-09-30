@@ -85,9 +85,7 @@ body {
   border-top-right-radius: var(--radius-sm);
   border-top: var(--border);
   gap: var(--space-md);
-  overflow-y: auto;
-
-  /* remove aquele margin-bottom: 104px */
+  overflow-y: auto;  
 }
 .splash-screen {
   position: fixed;
@@ -95,7 +93,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--grey-100); /* cor de fundo do app */
+  background-color: var(--grey-100);  
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -10,6 +10,8 @@ import GoalDetailsPage from "./Pages/GoalDetailsPage";
 import coin from "./assets/icons/coin.png";
 
 import AppBar from "./Components/General/AppBar";
+
+import './i18n/config';
 import "./App.css";
 
 function App() {

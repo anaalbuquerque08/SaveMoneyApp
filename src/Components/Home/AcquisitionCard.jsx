@@ -1,77 +1,83 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { calculateGoalTotals } from "../../utils/goalCalculations";
+// 1. Importa a função centralizada de formatação
+import { formatCurrencyValue } from "../../utils/currencyUtils"; 
+
 import CircularProgress from "../Home/CircularProgress";
 import "../../styles/home/cardAcquisition.css";
 
-// 1. Recebe a prop valuesVisible
 export default function AcquisitionCard({ goals = [], valuesVisible = true }) { 
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
 
     const { totalCurrent, totalTarget } = calculateGoalTotals(goals);
 
-    // ✅ Calcula a porcentagem e o valor restante
     const progressPercentage = totalTarget > 0 ? ((totalCurrent / totalTarget) * 100).toFixed(0) : 0;
     const remainingValue = totalTarget - totalCurrent;
-
-    // 2. Define o valor mascarado para quando estiver oculto
-    const MASKED_VALUE = "R$ •••••••";
-
-    // 3. Função auxiliar para formatar condicionalmente
+    
+    const MASKED_VALUE = "•••••••"; 
+    
+    // 2. REMOVE as funções getCurrencyPrefix e formatConditional locais.
+    // 3. Define a função formatConditional para usar a utilidade importada.
     const formatConditional = (value) => {
-        if (valuesVisible) {
-            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-        return MASKED_VALUE;
+        if (valuesVisible) { 
+            // Usa a função centralizada para formatar o valor
+            return formatCurrencyValue(value, i18n.language);
+        } 
+        
+        // No modo mascarado, usamos um prefixo genérico.
+        // O ideal é pegar o prefixo do idioma atual (usando getCurrencyDataByLanguage, se necessário)
+        // Mas mantendo o padrão simples de máscara:
+        const currentPrefix = i18n.language.startsWith('en') ? '$' : 'R$'; 
+        
+        return `${currentPrefix} ${MASKED_VALUE}`; 
     };
     
-    // 4. Função auxiliar para aplicar a classe de máscara
     const getMaskClass = () => {
         return !valuesVisible ? 'masked-text' : '';
     };
 
-    // Formatações condicionais que serão usadas no JSX
     const displayCurrent = formatConditional(totalCurrent);
     const displayTarget = formatConditional(totalTarget);
     const displayRemaining = formatConditional(remainingValue);
 
     return (
-        <div className="card-container">
-            {/* Card - Dinheiro */}
+        <div className="card-container"> 
             <div className="card-shadow">
                 <div className="card-acquisition">
-                    <div className="card-left">
-                        <div className="card-icon money"></div>
+                    <div className="card-left"> 
+                        <div className="card-icon money" role="img" aria-label={t("acquisitions.money_icon_alt")}></div>
                     </div>
                     <div className="card-divider"></div>
 
-                    <div className="card-right">
-                        <p className="card-title">Você juntou o total de</p>
+                    <div className="card-right"> 
+                        <p className="card-title">{t("acquisitions.total_collected_title")}</p>
                         
-                        {/* APLICAÇÃO 1: Saldo Atual */}
                         <p className={`card-subtitle ${getMaskClass()}`}>{displayCurrent}</p>
                         
-                        {/* APLICAÇÃO 2: Meta */}
-                        <p className={`card-meta ${getMaskClass()}`}>Meta: {displayTarget}</p>
+                        <p className={`card-meta ${getMaskClass()}`}>
+                            {t("acquisitions.target_label")}: {displayTarget}
+                        </p>
                     </div>
                 </div>
             </div>
             
             
-            {/* Card - Porcentagem */}
             <div className="card-shadow">
                 <div className="card-acquisition">
                     <div className="card-left"> 
-                        {/* NOTA: A porcentagem em si não precisa de máscara, mas se a tag <p> fosse um número, precisaria. */}
                         <CircularProgress percentage={progressPercentage} size={90} strokeWidth={8} />
                     </div>
                     <div className="card-divider"></div>
 
-                    <div className="card-right">
-                        <p className="card-title">do total de metas</p>
+                    <div className="card-right"> 
+                        <p className="card-title">{t("acquisitions.of_total_goals")}</p>
                         
-                        {/* APLICAÇÃO 3: Valor Faltante */}
-                        <p className={`card-meta ${getMaskClass()}`}>Falta {displayRemaining} para atingir sua meta</p>
+                        <p className={`card-meta ${getMaskClass()}`}> 
+                            {t("acquisitions.remaining_value", { value: displayRemaining })}
+                        </p>
                     </div>
                 </div>
             </div>
