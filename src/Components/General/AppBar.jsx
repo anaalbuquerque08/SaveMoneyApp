@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";  
 import "../../styles/general/variables.css";
-import "../../styles/general/appbar.css";  
+import "../../styles/general/appBar.css";  
 
 import { FaListUl } from "react-icons/fa";
 import { FiPlusCircle } from "react-icons/fi";
