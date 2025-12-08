@@ -1,6 +1,6 @@
 import React from "react"; 
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
-import cone from "./icons/cone.png";
+import cone from "/icons/cone.png";
  
 
 export default function InformationPage() {

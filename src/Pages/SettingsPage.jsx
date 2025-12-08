@@ -6,11 +6,11 @@ import LanguageSettingsModal from "../Components/Settings/LanguageSettingsModal"
 // 2. Importa o novo modal de Moeda
 import CurrencySettingsModal from "../Components/Settings/CurrencySettingsModal"; 
 import { useNavigate } from 'react-router-dom';
-import translation from "./icons/translation.png";
-import notification from "./icons/notification.png";
-import suport from "./icons/suport.png";
-import information from "./icons/information.png"; 
-import moneyIcon from "./icons/coin.png"; 
+import translation from "/icons/translation.png";
+import notification from "/icons/notification.png";
+import suport from "/icons/suport.png";
+import information from "/icons/information.png"; 
+import moneyIcon from "/icons/coin.png"; 
 
 import "../styles/settingsPage/settingsPage.css";
  
