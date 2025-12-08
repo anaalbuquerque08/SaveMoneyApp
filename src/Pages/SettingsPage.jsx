@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import LanguageSettingsModal from "../Components/Settings/LanguageSettingsModal";
 // 2. Importa o novo modal de Moeda
 import CurrencySettingsModal from "../Components/Settings/CurrencySettingsModal"; 
-
+import { useNavigate } from 'react-router-dom';
 import translation from "../assets/icons/translation.png";
 import notification from "../assets/icons/notification.png";
 import suport from "../assets/icons/suport.png";
@@ -22,7 +22,7 @@ const settingsData = [
     { titleKey: "settings.language_label", icon: translation, iconType: "image", type: "modal" }, 
     { titleKey: "settings.currency_label", icon: moneyIcon, iconType: "image", type: "currency_modal" },
     { titleKey: "settings.notifications", icon: notification, iconType: "image", type: "toggle" },
-    { titleKey: "settings.support_label", icon: suport, iconType: "image", type: "action" },
+    { titleKey: "settings.support_label", icon: suport, iconType: "image", type: "navigation",path: "/support" },
     { titleKey: "settings.about_label", icon: information, iconType: "image", type: "navigation" },
 ];
 

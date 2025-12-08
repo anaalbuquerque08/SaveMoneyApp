@@ -132,7 +132,7 @@ export default function GoalDetailsPage() {
         
     const fixedItems = Array.from({ length: totalDeposits }, (_, i) => ({
         id: i,
-        label: `R$ ${challengeInfo.fixedDepositValue}`,
+        label: `$ ${challengeInfo.fixedDepositValue}`,
         value: challengeInfo.fixedDepositValue,
     }));
 
