@@ -11,9 +11,9 @@ import AcquisitionCard from "../Components/Home/AcquisitionCard";
 import DepositBox from "../Components/States/DepositBox";
 import EmptyState from "../Components/States/EmptyState";
 
-//* Constants
-import emptyStates from "../Constants/emptyStates";
-import subtitleStates from "../Constants/subtitleStates";
+//* constants
+import emptyStates from "../constants/emptyStates";
+import subtitleStates from "../constants/subtitleStates";
 
 //* Animations
 import HomeFadeIn from "../Components/General/AnimatedPage/HomeFadeIn";

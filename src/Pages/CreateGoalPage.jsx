@@ -12,8 +12,8 @@ import {
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import SubtitleContainer from "../Components/States/SubtitleState";
 import Header from "../Components/General/Header";
-import subtitleStates from "../Constants/subtitleStates";
-import availableIcons from "../Constants/goalIcons";
+import subtitleStates from "../constants/subtitleStates";
+import availableIcons from "../constants/goalIcons";
 import "../styles/createGoalPage/createGoalPage.css";
 
 const MAX_DEPOSITS_SEQUENTIAL = 447;

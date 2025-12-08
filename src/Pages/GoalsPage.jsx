@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import SubtitleContainer from "../Components/States/SubtitleState";
 import Header from "../Components/General/Header"; 
-import subtitleStates from "../Constants/subtitleStates"; 
+import subtitleStates from "../constants/subtitleStates"; 
 import GoalsList from "../Components/General/GoalsList"; 
 import "../styles/goalsPage/goalsPage.css";
  
