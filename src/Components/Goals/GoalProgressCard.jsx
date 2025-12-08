@@ -30,9 +30,8 @@ export default function GoalProgressCard({ title, icon, current, target, subtitl
     const getProgressColor = () => {
         switch (goalType) {
             case "sequencial":
-                return "var(--pink-100)";
-            case "blocos":
-            case "blocos": // Caso de segurança, caso haja repetição
+                return "var(--pink-100)"; 
+            case "blocos":  
                 return "var(--green-100)";
             case "fixo":
                 return "var(--purple-100)";
@@ -40,8 +39,7 @@ export default function GoalProgressCard({ title, icon, current, target, subtitl
                 return "var(--grey-200)";
         }
     };
-    
-    // Usa a nova função para formatar os valores
+     
     const displayCurrent = formatCurrencyValue(current);
     const displayTarget = formatCurrencyValue(target);
 
