@@ -8,10 +8,10 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'icons/*.png'],
-      manifest: {
+      manifest: { 
         name: 'SaveMoney+',
         short_name: 'App',
-        start_url: '.',
+        start_url: '/',  
         display: 'standalone',
         background_color: '#f8f8f8',
         theme_color: '#f8f8f8',
@@ -20,6 +20,23 @@ export default defineConfig({
           { src: '/icons/512.png', sizes: '512x512', type: 'image/png' },
         ],
       },
+      
+      // === NOVO BLOCO DE CONFIGURAÇÃO PARA CACHE OFFLINE ===
+      workbox: {
+        runtimeCaching: [
+          { 
+            urlPattern: /\.(?:png|jpe?g|svg|gif|webp)$/i, 
+            handler: 'CacheFirst', 
+            options: {
+              cacheName: 'app-images-cache',
+              expiration: {
+                maxEntries: 100,  
+                maxAgeSeconds: 30 * 24 * 60 * 60,  
+              },
+            },
+          },
+        ],
+      }, 
     }),
   ],
 })
