@@ -6,9 +6,7 @@ import GoalsPage from "./Pages/GoalsPage";
 import CreateGoalPage from "./Pages/CreateGoalPage";
 import InformationPage from "./Pages/InformationPage";
 import SettingsPage from "./Pages/SettingsPage";
-import GoalDetailsPage from "./Pages/GoalDetailsPage";
-import coin from "/icons/coin.png";
-
+import GoalDetailsPage from "./Pages/GoalDetailsPage"; 
 import AppBar from "./Components/General/AppBar";
 
 import './i18n/config';
@@ -24,8 +22,8 @@ function App() {
 
   if (loading) {
     return (
-      <div className="splash-screen">
-        <img src={coin} alt="Depozy Logo" className="splash-logo" /> 
+      <div className="splash-screen"> 
+        <img src="/icons/coin.png" alt="Depozy Logo" className="splash-logo" /> 
       </div>
     );
   }
