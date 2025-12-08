@@ -7,7 +7,7 @@ import CreateGoalPage from "./Pages/CreateGoalPage";
 import InformationPage from "./Pages/InformationPage";
 import SettingsPage from "./Pages/SettingsPage";
 import GoalDetailsPage from "./Pages/GoalDetailsPage";
-import coin from "./assets/icons/coin.png";
+import coin from "/icons/coin.png";
 
 import AppBar from "./Components/General/AppBar";
 
