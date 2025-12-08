@@ -2,38 +2,32 @@ import React, { useState, useEffect } from "react";
 import GeneralFadeIn from "../Components/General/AnimatedPage/GeneralFadeIn";
 import Header from '../Components/General/Header';
 import { useTranslation } from 'react-i18next';
-import LanguageSettingsModal from "../Components/Settings/LanguageSettingsModal";
-// 2. Importa o novo modal de Moeda
-import CurrencySettingsModal from "../Components/Settings/CurrencySettingsModal"; 
-import { useNavigate } from 'react-router-dom';
-import translation from "/icons/translation.png";
-import notification from "/icons/notification.png";
-import suport from "/icons/suport.png";
-import information from "/icons/information.png"; 
-import moneyIcon from "/icons/coin.png"; 
+import LanguageSettingsModal from "../Components/Settings/LanguageSettingsModal"; 
+import CurrencySettingsModal from "../Components/Settings/CurrencySettingsModal";
+import { useNavigate } from 'react-router-dom'; 
 
 import "../styles/settingsPage/settingsPage.css";
- 
+
 const getInitialCurrency = () => {
     return localStorage.getItem('currencyPreference') || 'BRL';
 };
-
+ 
 const settingsData = [
-    { titleKey: "settings.language_label", icon: translation, iconType: "image", type: "modal" }, 
-    { titleKey: "settings.currency_label", icon: moneyIcon, iconType: "image", type: "currency_modal" },
-    { titleKey: "settings.notifications", icon: notification, iconType: "image", type: "toggle" },
-    { titleKey: "settings.support_label", icon: suport, iconType: "image", type: "navigation",path: "/support" },
-    { titleKey: "settings.about_label", icon: information, iconType: "image", type: "navigation" },
+    { titleKey: "settings.language_label", icon: "/icons/translation.png", iconType: "image", type: "modal" },
+    { titleKey: "settings.currency_label", icon: "/icons/coin.png", iconType: "image", type: "currency_modal" },
+    { titleKey: "settings.notifications", icon: "/icons/notification.png", iconType: "image", type: "toggle" },
+    { titleKey: "settings.support_label", icon: "/icons/suport.png", iconType: "image", type: "navigation", path: "/support" },
+    { titleKey: "settings.about_label", icon: "/icons/information.png", iconType: "image", type: "navigation" },
 ];
 
 
 export default function SettingsPage() {
     const { t, i18n } = useTranslation();
-    const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false); 
-    const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false); 
-     
+    const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+    const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
+
     const [currentCurrency, setCurrentCurrency] = useState(getInitialCurrency);
- 
+
     useEffect(() => {
         localStorage.setItem('currencyPreference', currentCurrency);
     }, [currentCurrency]);
@@ -45,17 +39,17 @@ export default function SettingsPage() {
         setIsLanguageModalOpen(false);
         alert(t('settings.language_changed'));
     };
-     
+
     const handleCurrencyChange = (newCurrencyCode) => {
         setCurrentCurrency(newCurrencyCode);
-        setIsCurrencyModalOpen(false); 
+        setIsCurrencyModalOpen(false);
     };
 
     const handleSettingClick = (type) => {
         if (type === 'modal') {
             setIsLanguageModalOpen(true);
-        } else if (type === 'currency_modal')  
-            setIsCurrencyModalOpen(true); 
+        } else if (type === 'currency_modal')
+            setIsCurrencyModalOpen(true);
     }
 
     return (
@@ -74,7 +68,7 @@ export default function SettingsPage() {
                                 >
                                     {setting.iconType === "image" ? (
                                         <img
-                                            src={setting.icon}
+                                            src={setting.icon}  
                                             alt={t(setting.titleKey)}
                                             className="setting-icon-img"
                                         />
@@ -95,8 +89,7 @@ export default function SettingsPage() {
                     onSelect={handleLanguageChange}
                     lang={currentLang}
                 />
-                
-                {/* 9. Renderiza o novo modal de Moeda */}
+ 
                 <CurrencySettingsModal
                     isOpen={isCurrencyModalOpen}
                     onClose={() => setIsCurrencyModalOpen(false)}
