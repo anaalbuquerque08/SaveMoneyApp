@@ -2,7 +2,7 @@ import React from "react";
 import GoalCard from "./GoalsCard";
 import EmptyState from "../States/EmptyState";
 import { useNavigate } from "react-router-dom";
-import sadPig from "../../assets/pig/sad-pig.png";
+import sadPig from "/pig/sad-pig.png";
 import emptyStates from "../../constants/emptyStates";  
 
 export default function GoalsList({ goals = [], valuesVisible = true }) {

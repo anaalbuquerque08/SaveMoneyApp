@@ -75,7 +75,7 @@
  
 
   /* BACKGROUND IMAGES / ASSETS */
-  --background-image: url("../../assets/backgrounds/background-image2.png");
+  --background-image: url("/backgrounds/background-image2.png");
   --money: url("/icons/money.png");
   --percentage: url("/icons/percentage.png");
   --car: url("/icons/carro-icon.png");

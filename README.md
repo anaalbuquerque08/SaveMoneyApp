@@ -1,7 +1,7 @@
-# 💸 SaveMoneyApp – App de Metas Financeiras
+# 💸 Depozy – App de Metas Financeiras
 
 Um aplicativo simples, motivador e divertido para ajudar você a criar e acompanhar metas financeiras.  
-Com uma interface moderna, animações interativas e foco em usabilidade, o SaveMoneyApp transforma o ato de economizar em uma experiência engajante.  
+Com uma interface moderna, animações interativas e foco em usabilidade, o Depozy transforma o ato de economizar em uma experiência engajante.  
 
 ---
 

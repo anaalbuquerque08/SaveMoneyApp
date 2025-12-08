@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'robots.txt', 'icons/*.png'],
       manifest: { 
-        name: 'SaveMoney+',
+        name: 'Depozy',
         short_name: 'App',
         start_url: '/',  
         display: 'standalone',
