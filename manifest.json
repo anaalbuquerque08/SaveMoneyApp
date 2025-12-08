@@ -1,7 +1,7 @@
 {
   "name": "Depozy",
   "short_name": "App",
-  "start_url": ".",
+  "start_url": "/", 
   "display": "standalone",
   "background_color": "#F7F7F7",
   "theme_color": "#F7F7F7",
