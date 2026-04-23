@@ -12,10 +12,17 @@ const getInitialCurrency = () => {
     return localStorage.getItem('currencyPreference') || 'BRL';
 };
  
+const getInitialSound = () => {
+    const saved = localStorage.getItem('app_sound_enabled');
+    return saved === null ? true : JSON.parse(saved);
+};
+ 
 const settingsData = [
     { titleKey: "settings.language_label", icon: "/icons/translation.png", iconType: "image", type: "modal" },
     { titleKey: "settings.currency_label", icon: "/icons/coin.png", iconType: "image", type: "currency_modal" },
     { titleKey: "settings.notifications", icon: "/icons/notification.png", iconType: "image", type: "toggle" },
+    // Novo box de Som
+    { titleKey: "settings.sound_label", icon: "/icons/sound.png", iconType: "image", type: "sound" }, 
     { titleKey: "settings.support_label", icon: "/icons/suport.png", iconType: "image", type: "navigation", path: "/support" },
     { titleKey: "settings.about_label", icon: "/icons/information.png", iconType: "image", type: "navigation" },
 ];
@@ -27,10 +34,17 @@ export default function SettingsPage() {
     const [isCurrencyModalOpen, setIsCurrencyModalOpen] = useState(false);
 
     const [currentCurrency, setCurrentCurrency] = useState(getInitialCurrency);
+    
+    // Estado para o Som
+    const [soundEnabled, setSoundEnabled] = useState(getInitialSound);
 
     useEffect(() => {
         localStorage.setItem('currencyPreference', currentCurrency);
     }, [currentCurrency]);
+ 
+    useEffect(() => {
+        localStorage.setItem('app_sound_enabled', JSON.stringify(soundEnabled));
+    }, [soundEnabled]);
 
     const currentLang = i18n.language.startsWith('es') ? 'es' : (i18n.language.startsWith('en') ? 'en' : 'pt');
 
@@ -48,8 +62,11 @@ export default function SettingsPage() {
     const handleSettingClick = (type) => {
         if (type === 'modal') {
             setIsLanguageModalOpen(true);
-        } else if (type === 'currency_modal')
+        } else if (type === 'currency_modal') {
             setIsCurrencyModalOpen(true);
+        } else if (type === 'sound') { 
+            setSoundEnabled(!soundEnabled);
+        }
     }
 
     return (
@@ -64,11 +81,18 @@ export default function SettingsPage() {
                             <div key={setting.titleKey} className="setting-item-box-container">
                                 <div
                                     className="setting-item-box"
-                                    onClick={() => handleSettingClick(setting.type)}
+                                    onClick={() => handleSettingClick(setting.type)} 
+                                    style={{ 
+                                        opacity: setting.type === 'sound' && !soundEnabled ? 0.7 : 1,
+                                        transition: 'all 0.3s ease' 
+                                    }}
                                 >
                                     {setting.iconType === "image" ? (
-                                        <img
-                                            src={setting.icon}  
+                                        <img 
+                                            src={setting.type === 'sound' && !soundEnabled 
+                                                ? "/icons/no-sound.png" 
+                                                : setting.icon
+                                            }  
                                             alt={t(setting.titleKey)}
                                             className="setting-icon-img"
                                         />
@@ -77,6 +101,8 @@ export default function SettingsPage() {
                                     )}
 
                                     <p>{t(setting.titleKey)}</p>
+                                    
+                                   
                                 </div>
                             </div>
                         ))}

@@ -5,8 +5,8 @@ import "../../styles/general/subtitleContainer.css";
 import { useTranslation } from 'react-i18next'; 
 export default function SubtitleContainer({ children, showButton = true }) {
   const navigate = useNavigate();
-  const { t } = useTranslation(); 
-  const content = typeof children === 'string' ? t(children) : children;
+  const { t } = useTranslation();  
+const content = typeof children === 'string' ? t(children) : children;
 
   return (
     <div className="subtitle-container"> 

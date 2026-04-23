@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import { useTranslation } from 'react-i18next';  
+import { useTranslation } from 'react-i18next';
 
 //* Components
 import Header from "../Components/General/Header";
@@ -13,7 +13,7 @@ import ChallengeGrid from "../Components/Challenge/ChallengeGrid";
 import "../styles/goalDetailsPage/goalDetailsPage.css";
 
 export default function GoalDetailsPage() {
-    const { t } = useTranslation();  
+    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export default function GoalDetailsPage() {
         challengeInfo,
         completedDeposits: initialCompletedDeposits,
     } = location.state || {};
-    
+
     if (!id) {
         navigate("/goals");
         return null;
@@ -43,10 +43,10 @@ export default function GoalDetailsPage() {
         const newCompletedDeposits = existingDeposit
             ? completedDeposits.filter(dep => dep.index !== depositIndex)
             : [...completedDeposits, {
-                  value: depositValue,
-                  timestamp: new Date().getTime(),
-                  index: depositIndex
-              }];
+                value: depositValue,
+                timestamp: new Date().getTime(),
+                index: depositIndex
+            }];
 
         setCompletedDeposits(newCompletedDeposits);
 
@@ -69,7 +69,7 @@ export default function GoalDetailsPage() {
         localStorage.setItem("goals", JSON.stringify(updatedGoals));
     };
 
-    const handleDeleteGoal = () => { 
+    const handleDeleteGoal = () => {
         if (!window.confirm(t("goals.details.delete_confirm", { title }))) {
             return;
         }
@@ -81,7 +81,7 @@ export default function GoalDetailsPage() {
     };
 
     const totalDeposits = challengeInfo?.totalDeposits || 0;
-        
+
     const getChallengeSubtitle = (type) => {
         let challengeTitleKey;
         let subtitleClass;
@@ -102,13 +102,11 @@ export default function GoalDetailsPage() {
             default:
                 return null;
         }
-        
-        // Retorna o JSX completo, com a tradução e a estilização no span
+
         return (
             <>
                 {t(challengeTitleKey)}{" "}
                 <span className={`subtitle-count ${subtitleClass}`}>
-                    {/* Chama a tradução para o contador com os valores numéricos */}
                     {t("goals.details.deposit_count", {
                         current: completedDeposits.length,
                         total: totalDeposits,
@@ -117,19 +115,19 @@ export default function GoalDetailsPage() {
             </>
         );
     };
-    
+
     const sequentialItems = Array.from({ length: totalDeposits }, (_, i) => ({
         id: i,
         label: `${i + 1}`,
         value: i + 1,
     }));
-    
+
     const blockItems = (challengeInfo?.depositsList || []).map((depositValue, index) => ({
         id: index,
         label: `${depositValue}`,
         value: depositValue,
     }));
-        
+
     const fixedItems = Array.from({ length: totalDeposits }, (_, i) => ({
         id: i,
         label: `$ ${challengeInfo.fixedDepositValue}`,
@@ -138,7 +136,7 @@ export default function GoalDetailsPage() {
 
     return (
         <div className="page">
-            <Header type="home" showButton={true} showContent={false} showEyeButton={false}/>
+            <Header type="home" showButton={true} showContent={false} showEyeButton={false} />
             <GeneralFadeIn>
                 <div className="goal-details-header-content">
                     <GoalProgressCard
@@ -149,14 +147,15 @@ export default function GoalDetailsPage() {
                         target={targetValue}
                         goalType={goalType}
                     />
-                </div> 
+                </div>
                 {goalType === "sequencial" && (
                     <>
                         <SubtitleContainer
-                            // CORRIGIDO: Passa o JSX como children
                             children={getChallengeSubtitle("sequencial")}
                             showButton={false}
                         />
+
+ 
                         <ChallengeGrid
                             challengeItems={sequentialItems}
                             completedItems={completedDeposits.map(dep => dep.index)}
@@ -165,11 +164,10 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-    
+
                 {goalType === "blocos" && (
                     <>
                         <SubtitleContainer
-                            // CORRIGIDO: Passa o JSX como children
                             children={getChallengeSubtitle("blocos")}
                             showButton={false}
                         />
@@ -181,7 +179,7 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-    
+
                 {goalType === "fixo" && (
                     <>
                         <SubtitleContainer
@@ -197,9 +195,9 @@ export default function GoalDetailsPage() {
                         />
                     </>
                 )}
-    
+
                 <div className="delete-goal-btn" onClick={handleDeleteGoal}>
-                    <FaTrash className="delete-goal-btn-icon" size={24} /> 
+                    <FaTrash className="delete-goal-btn-icon" size={24} />
                 </div>
             </GeneralFadeIn>
         </div>

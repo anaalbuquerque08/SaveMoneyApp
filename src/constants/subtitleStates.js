@@ -8,6 +8,12 @@ const subtitleStates = {
   aquisitions: {
     text: "subtitle_state.aquisitions_subtitle_text"
   },
+  create: {
+    text: "subtitle_state.create_subtitle_text"
+  },
+
+
 };
 
 export default subtitleStates;
+ 

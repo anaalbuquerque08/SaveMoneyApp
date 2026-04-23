@@ -1,5 +1,4 @@
-// ATENÇÃO: Nenhum import JS é mais necessário, pois estamos referenciando as imagens diretamente pelo caminho estático.
-
+ 
 export const availableIcons = [ 
     {
         title: "icon_categories.finance",

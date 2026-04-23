@@ -12,7 +12,8 @@
   "subtitle_state": {
     "goals_subtitle_text": "My Goals",
     "deposit_subtitle_text": "My Deposits",
-    "aquisitions_subtitle_text": "My Acquisitions"
+    "aquisitions_subtitle_text": "My Acquisitions",
+    "create_subtitle_text": "Create Goals"
   },
   "goals": {
     "add_goal_button": "Add Goal",
@@ -23,7 +24,7 @@
     },
     "input": {
       "title_placeholder": "Goal Title",
-      "description_placeholder": "Description (max. 70 characters)",
+      "description_placeholder": "Description",
       "target_value_placeholder": "Target value",
       "fixed_deposit_placeholder": "Deposit value ($)"
     },
@@ -60,6 +61,7 @@
     "notifications": "Notifications",
     "support_label": "Support",
     "about_label": "About App",
+    "sound_label": "Sound",
     "language_changed": "Language successfully changed."
   },
   "common": {

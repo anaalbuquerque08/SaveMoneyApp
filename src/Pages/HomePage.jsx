@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { calculateGoalTotals } from "../utils/goalCalculations";
 import { useTranslation } from 'react-i18next';
-import { getCurrencyDataByLanguage } from "../utils/currencyUtils";  
+import { getCurrencyDataByLanguage } from "../utils/currencyUtils"; 
 
 //* Components
 import Header from "../Components/General/Header";
@@ -75,9 +75,9 @@ export default function HomePage() {
     } else if (goals.length > 0 && totalCurrent > 0) {
         homeState = "complete";
     }
- 
 
-    const formatDepositValue = (value) => { 
+
+    const formatDepositValue = (value) => {
         const { symbol: currencyPrefix, locale: currentLocale } = getCurrencyDataByLanguage(i18n.language);
 
         if (valuesVisible) {
@@ -85,9 +85,9 @@ export default function HomePage() {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             });
-            return `+ ${currencyPrefix} ${formattedValue}`; 
+            return `+ ${currencyPrefix} ${formattedValue}`;
         }
-        return `+ ${currencyPrefix} •••••`;  
+        return `+ ${currencyPrefix} •••••`;
     }
 
     const getMaskClass = () => {
@@ -95,7 +95,7 @@ export default function HomePage() {
     };
 
     return (
-        <div className="home-page">
+        <div className="home-page"> 
             <Header
                 type="home"
                 showButton={false}
@@ -112,11 +112,17 @@ export default function HomePage() {
                 )}
                 {(homeState === "goalNoDeposit" || homeState === "complete") && (
                     <>
-                        <SubtitleContainer text={subtitleStates.aquisitions.text} showButton={true} />
+                        <SubtitleContainer showButton={true}>
+                            {subtitleStates.aquisitions.text}
+                        </SubtitleContainer>
 
                         <AcquisitionCard goals={goals} valuesVisible={valuesVisible} />
+ 
 
-                        <SubtitleContainer text={subtitleStates.deposit.text} showButton={false} />
+                        <SubtitleContainer showButton={false}>
+                            {subtitleStates.deposit.text}
+                        </SubtitleContainer>
+
                         <DepositBox>
                             {lastDeposits.length > 0 ? (
                                 lastDeposits.map((deposit, index) => (

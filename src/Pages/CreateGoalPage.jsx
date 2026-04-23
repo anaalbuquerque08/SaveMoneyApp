@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
+import happyPig from "/pig/happy-pig.svg";
 import {
     generateSequentialChallenge,
     calculateSequentialSum,
@@ -26,7 +27,7 @@ export default function CreateGoalsPage() {
     const [goalType, setGoalType] = useState("blocos");
     const [targetValue, setTargetValue] = useState("");
     const [fixedDepositValue, setFixedDepositValue] = useState("");
-
+    const [dropdownType, setDropdownType] = useState(false);
     const [icon, setIcon] = useState(availableIcons[0].icons[0]);
 
     const [dropdown, setDropdown] = useState(false);
@@ -39,16 +40,20 @@ export default function CreateGoalsPage() {
         if (goalType === "sequencial") {
             const maxChallengeValue = calculateSequentialSum(MAX_DEPOSITS_SEQUENTIAL);
             setChallengeDisplay({
+
+                type: t("goals.details.sequential_challenge_title"),
                 description: t("goals.challenge.sequential_description"),
                 maxInfo: t("goals.challenge.sequential_max_info", { value: maxChallengeValue }),
             });
         } else if (goalType === "blocos") {
             setChallengeDisplay({
+                type: t("goals.details.block_challenge_title"),
                 description: t("goals.challenge.block_description"),
                 maxInfo: t("goals.challenge.block_max_info"),
             });
         } else if (goalType === "fixo") {
             setChallengeDisplay({
+                type: t("goals.details.fixed_challenge_title"),
                 description: t("goals.challenge.fixed_description"),
                 maxInfo: t("goals.challenge.fixed_min_info", { value: MIN_FIXED_DEPOSIT }),
             });
@@ -127,34 +132,35 @@ export default function CreateGoalsPage() {
         <div className="page">
             <Header type="home" showButton={true} showContent={false} showEyeButton={false} />
             <GeneralFadeIn>
-                <SubtitleContainer text={subtitleStates.goals.text} showButton={true} />
+                <SubtitleContainer showButton={true}>
+                    {subtitleStates.create.text}
+                </SubtitleContainer>
 
                 <div className="goal-form">
                     <section className="icon-and-input-row">
-                        <div className="icon-selector-container">
+
+                        <div className={`icon-selector-container ${dropdown ? "is-open" : ""}`} style={{ zIndex: dropdown ? 100 : 1 }}>
                             <div
                                 className={`selected-icon-box ${dropdown ? "active" : ""}`}
-                                onClick={() => setDropdown(!dropdown)}
+                                onClick={() => {
+                                    setDropdown(!dropdown);
+                                    setDropdownType(false);
+                                }}
                             >
                                 <img src={icon} alt={t("goals.alt.selected_icon")} />
                                 <FaChevronDown size={16} />
                             </div>
 
-                            <div
-                                className={`icon-options-dropdown ${dropdown ? "active" : ""}`}
-                            >
+                            <div className={`icon-options-dropdown ${dropdown ? "active" : ""}`}>
                                 {availableIcons.map((category, index) => (
                                     <React.Fragment key={index}>
                                         <div className="icon-dropdown-container" >
-                                            <div className="icon-category-title">
-                                                {t(category.title)}
-                                            </div>
+                                            <div className="icon-category-title">{t(category.title)}</div>
                                             <div className="icon-category-icons">
                                                 {category.icons.map((img) => (
                                                     <button
                                                         key={img}
                                                         type="button"
-                                                        className={icon === img ? "selected" : ""}
                                                         onClick={() => {
                                                             setIcon(img);
                                                             setDropdown(false);
@@ -169,47 +175,92 @@ export default function CreateGoalsPage() {
                                 ))}
                             </div>
                         </div>
-                        <input
-                            type="text"
-                            placeholder={t("goals.input.title_placeholder")}
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            maxLength={22}
-                        />
+
+                        <div className="input-group">
+                            <label className="input-label">{t("goals.input.title_placeholder")}</label>
+                            <input
+                                type="text"
+                                placeholder="Celular Novo..."
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                maxLength={22}
+                                className="custom-input"
+                            />
+                        </div>
                     </section>
 
-                    <input
-                        type="text"
-                        placeholder={t("goals.input.description_placeholder")}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value.substring(0, 70))}
-                        maxLength={120}
-                    />
+                    <div className="input-group">
+                        <label className="input-label">{t("goals.input.description_placeholder")}</label>
+                        <input
+                            type="text"
+                            placeholder="Descreva o seu objetivo..."
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value.substring(0, 70))}
+                            className="custom-input"
+                        />
+                    </div>
 
-                    <select value={goalType} onChange={(e) => setGoalType(e.target.value)}>
-                        <option value="blocos">{t("goals.type.blocks")}</option>
-                        <option value="sequencial">{t("goals.type.sequential")}</option>
-                        <option value="fixo">{t("goals.type.fixed")}</option>
-                    </select>
+                    <div className={`type-selector-container ${dropdownType ? "is-open" : ""}`} style={{ zIndex: dropdownType ? 100 : 1 }}>
+                        <div
+                            className={`selected-type-box ${dropdownType ? "active" : ""} ${goalType}`}
+                            onClick={() => {
+                                setDropdownType(!dropdownType);
+                                setDropdown(false);
+                            }}
+                        >
+                            <span>{t(`goals.type.${goalType === 'blocos' ? 'blocks' : goalType === 'sequencial' ? 'sequential' : 'fixed'}`)}</span>
+                            <FaChevronDown size={14} />
+                        </div>
 
+                        <div className={`type-options-dropdown ${dropdownType ? "active" : ""}`}>
+                            <button type="button" onClick={() => { setGoalType("blocos"); setDropdownType(false); }}>
+                                {t("goals.type.blocks")}
+                            </button>
+                            <button type="button" onClick={() => { setGoalType("sequencial"); setDropdownType(false); }}>
+                                {t("goals.type.sequential")}
+                            </button>
+                            <button type="button" onClick={() => { setGoalType("fixo"); setDropdownType(false); }}>
+                                {t("goals.type.fixed")}
+                            </button>
+                        </div>
+                    </div>
+                    {/* INFORMACOES*/}
                     {challengeDisplay && (
-                        <div className="challenge-info">
-                            <p className="challenge-description">
-                                {challengeDisplay.description}
-                            </p>
-                            <p className="challenge-max-info">{challengeDisplay.maxInfo}</p>
+                        <div className="challenge-card-info">
+                            <div className="challenge-card-text-container">
+
+                                <h3 className="challenge-card-type-title">
+                                    {challengeDisplay.type}
+                                </h3>
+
+                                <p className="challenge-card-description">
+                                    {challengeDisplay.description}
+                                </p>
+                            </div>
+
+
+                            <img src={happyPig} alt="Piggy" className="challenge-card-piggy" />
                         </div>
                     )}
 
-                    <input
-                        type="number"
-                        inputMode="numeric"
-                        placeholder={t("goals.input.target_value_placeholder")}
-                        value={targetValue}
-                        onChange={(e) => setTargetValue(e.target.value)}
-                        max={100000}
-                    />
 
+                    <div className="input-group">
+                        <label className="input-label">{t("goals.input.target_value_label")}
+                        </label>
+
+                        <input
+                            type="number"
+                            inputMode="numeric"
+                            placeholder={
+                                challengeDisplay?.maxInfo ||
+                                t("goals.input.target_value_placeholder")
+                            }
+                            value={targetValue}
+                            onChange={(e) => setTargetValue(e.target.value)}
+                            max={100000}
+                            className="custom-input"
+                        />
+                    </div>
                     {goalType === "fixo" && (
                         <input
                             type="number"
@@ -220,53 +271,44 @@ export default function CreateGoalsPage() {
                         />
                     )}
 
+
                     {challengeInfo && goalType === "sequencial" && (
                         <div className="challenge-info-result">
-                            <p>
-                                {t("goals.result.sequential_deposits", {
-                                    target: targetValue,
-                                    deposits: challengeInfo.totalDeposits
-                                })}
-                            </p>
-                            <p>
-                                {t("goals.result.final_value", { value: challengeInfo.finalValue })}
-                            </p>
+                            <p>{t("goals.result.sequential_deposits", { target: targetValue, deposits: challengeInfo.totalDeposits })}</p>
+                            <p>{t("goals.result.final_value", { value: challengeInfo.finalValue })}</p>
                         </div>
                     )}
 
                     {challengeInfo && goalType === "blocos" && (
                         <div className="challenge-info-result">
-                            <p>
-                                {t("goals.result.block_deposits", {
-                                    target: targetValue,
-                                    deposits: challengeInfo.totalDeposits
-                                })}
-                            </p>
+                            <p>{t("goals.result.block_deposits", { target: targetValue, deposits: challengeInfo.totalDeposits })}</p>
                         </div>
                     )}
 
                     {challengeInfo && goalType === "fixo" && (
                         <div className="challenge-info-result">
-                            <p>
-                                {t("goals.result.fixed_deposits", {
-                                    target: targetValue,
-                                    deposits: challengeInfo.totalDeposits,
-                                    fixed: fixedDepositValue
-                                })}
-                            </p>
-                            <p>
-                                {t("goals.result.final_value", { value: challengeInfo.finalValue })}
-                            </p>
+                            <p>{t("goals.result.fixed_deposits", { target: targetValue, deposits: challengeInfo.totalDeposits, fixed: fixedDepositValue })}</p>
+                            <p>{t("goals.result.final_value", { value: challengeInfo.finalValue })}</p>
                         </div>
                     )}
 
-                    <button
+
+
+                    <div className="add-goal-button-container">
+                       <button
                         onClick={addGoal}
-                        className={`goal-btn ${goalType}`}
+                        className={`add-goal-btn `}
                         disabled={!title || !targetValue || !challengeInfo}
                     >
                         {t("goals.add_goal_button")}
-                    </button>
+                    </button>  
+                    </div>
+                   
+ 
+
+
+
+
                 </div>
             </GeneralFadeIn>
         </div>

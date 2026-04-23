@@ -12,7 +12,8 @@
   "subtitle_state": {
     "goals_subtitle_text": "Mis metas",
     "deposit_subtitle_text": "Mis depósitos",
-    "aquisitions_subtitle_text": "Mis logros"
+    "aquisitions_subtitle_text": "Mis logros",
+    "create_subtitle_text": "Criar metas"
   },
   "goals": {
   "add_goal_button": "Añadir Meta",
@@ -23,7 +24,7 @@
   },
   "input": {
     "title_placeholder": "Título de la meta",
-    "description_placeholder": "Descripción (máx. 70 caracteres)",
+    "description_placeholder": "Descripción",
     "target_value_placeholder": "Valor objetivo",
     "fixed_deposit_placeholder": "Valor del depósito ($)"
   },
@@ -60,6 +61,7 @@
     "notifications": "Alertas",
     "support_label": "Apoyar",
     "about_label": "Info App",
+    "sound_label": "Sonido",
     "language_changed": "Idioma cambiado con éxito."
   },
   "common": {
